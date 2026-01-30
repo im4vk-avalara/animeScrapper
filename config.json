@@ -5,7 +5,7 @@
   },
   
   "scraping": {
-    "mode": "quick",
+    "mode": "full",
     "limit": null,
     "quick_limit": 30,
     "max_episodes_per_anime": 9999,

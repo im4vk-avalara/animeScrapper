@@ -1,23 +1,9 @@
 {
   "title": "‘Tis Time for “Torture,” Princess Season 2 (2026)",
   "url": "https://zoroto.com.in/anime/tis-time-for-torture-princess-season-2-2026/",
-  "alternative_titles": "'Tis Time for \"Torture,\" Princess Season 2",
   "description": "Second season of Himesama “Goumon” no Jikan desu.",
-  "cover_image": "https://zoroto.com.in/wp-content/uploads/2026/01/tis-time-for-torture-princess-season-2-2026.jpg",
-  "genres": [
-    "Comedy",
-    "Fantasy",
-    "Gourmet"
-  ],
-  "status": "Ongoing",
-  "type": "TV",
-  "studio": "Pine Jam",
-  "duration": "23 min",
-  "season": "Winter 2026",
-  "released": "Jan 12, 2026 to ?",
-  "producers": [
-    "Magic Capsule"
-  ],
+  "genres": [],
+  "status": null,
   "rating": null,
   "total_episodes": 3,
   "available_episodes": 3,
@@ -50,5 +36,5 @@
       "has_videos": true
     }
   ],
-  "scraped_at": "2026-01-30 09:04:41"
+  "scraped_at": "2026-01-29 23:30:33"
 }

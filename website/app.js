@@ -13,6 +13,7 @@ let currentPage = 1;
 let currentEpisodePage = 1;
 const ITEMS_PER_PAGE = 24;
 const EPISODES_PER_PAGE = 50;
+const MAX_HOME_ANIME = 50; // Only show first 50 on home, but search works on all
 
 // DOM Elements
 const animeGrid = document.getElementById('animeGrid');
@@ -95,9 +96,15 @@ function setupEventListeners() {
 function getFilteredAnime() {
     const searchTerm = searchInput.value.toLowerCase().trim();
     
-    return animeIndex.filter(anime => {
-        return !searchTerm || anime.title.toLowerCase().includes(searchTerm);
-    });
+    // If searching, search through ALL anime
+    if (searchTerm) {
+        return animeIndex.filter(anime => 
+            anime.title.toLowerCase().includes(searchTerm)
+        );
+    }
+    
+    // If not searching, only show first MAX_HOME_ANIME
+    return animeIndex.slice(0, MAX_HOME_ANIME);
 }
 
 // Render anime grid with pagination
@@ -146,45 +153,61 @@ function renderAnimeGrid() {
 // Render pagination controls
 function renderPagination(totalPages, totalItems) {
     const pagination = document.getElementById('pagination');
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const isSearching = searchTerm.length > 0;
     
-    if (totalPages <= 1) {
+    // Show info even if only 1 page when not searching (to show total available)
+    if (totalPages <= 1 && isSearching) {
         pagination.innerHTML = '';
         return;
     }
     
-    let html = `<div class="pagination-info">Showing ${((currentPage - 1) * ITEMS_PER_PAGE) + 1}-${Math.min(currentPage * ITEMS_PER_PAGE, totalItems)} of ${totalItems}</div>`;
-    html += '<div class="pagination-controls">';
+    // Build info text
+    let infoText = `Showing ${((currentPage - 1) * ITEMS_PER_PAGE) + 1}-${Math.min(currentPage * ITEMS_PER_PAGE, totalItems)} of ${totalItems}`;
     
-    // Previous button
-    html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← Prev</button>`;
-    
-    // Page numbers
-    const maxVisiblePages = 5;
-    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-    
-    if (endPage - startPage < maxVisiblePages - 1) {
-        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    // Add hint about more anime available via search when not searching
+    if (!isSearching && animeIndex.length > MAX_HOME_ANIME) {
+        infoText += ` <span style="color: var(--text-secondary); font-size: 0.85em;">(${animeIndex.length} total - use search to find more)</span>`;
     }
     
-    if (startPage > 1) {
-        html += `<button class="page-btn" onclick="goToPage(1)">1</button>`;
-        if (startPage > 2) html += `<span class="page-ellipsis">...</span>`;
+    let html = `<div class="pagination-info">${infoText}</div>`;
+    
+    // Only show pagination controls if more than 1 page
+    if (totalPages > 1) {
+        html += '<div class="pagination-controls">';
+        
+        // Previous button
+        html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← Prev</button>`;
+        
+        // Page numbers
+        const maxVisiblePages = 5;
+        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+        
+        if (endPage - startPage < maxVisiblePages - 1) {
+            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+        
+        if (startPage > 1) {
+            html += `<button class="page-btn" onclick="goToPage(1)">1</button>`;
+            if (startPage > 2) html += `<span class="page-ellipsis">...</span>`;
+        }
+        
+        for (let i = startPage; i <= endPage; i++) {
+            html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+        }
+        
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) html += `<span class="page-ellipsis">...</span>`;
+            html += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+        }
+        
+        // Next button
+        html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
+        
+        html += '</div>';
     }
     
-    for (let i = startPage; i <= endPage; i++) {
-        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
-    }
-    
-    if (endPage < totalPages) {
-        if (endPage < totalPages - 1) html += `<span class="page-ellipsis">...</span>`;
-        html += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
-    }
-    
-    // Next button
-    html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
-    
-    html += '</div>';
     pagination.innerHTML = html;
 }
 
