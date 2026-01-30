@@ -107,27 +107,60 @@ body {
     display: block;
 }
 
-/* Filters */
-.filters {
-    margin-bottom: 1.5rem;
+/* Pagination */
+.pagination {
+    margin-top: 2rem;
     display: flex;
-    gap: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
-.filter-btn {
+.pagination-info {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.page-btn {
     padding: 0.5rem 1rem;
     background-color: var(--bg-card);
     color: var(--text-primary);
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
+    font-size: 0.9rem;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
-    background-color: var(--accent);
+.page-btn:hover:not(:disabled) {
+    background: var(--gradient-accent);
     border-color: var(--accent);
+    color: #000;
+}
+
+.page-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    font-weight: bold;
+}
+
+.page-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.page-ellipsis {
+    color: var(--text-secondary);
+    padding: 0 0.5rem;
 }
 
 /* Anime Grid */

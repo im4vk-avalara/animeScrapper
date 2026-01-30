@@ -9,7 +9,8 @@ let animeIndex = [];
 let animeCache = {};
 let currentAnime = null;
 let currentEpisodeIndex = 0;
-let currentFilter = 'all';
+let currentPage = 1;
+const ITEMS_PER_PAGE = 24;
 
 // DOM Elements
 const animeGrid = document.getElementById('animeGrid');
@@ -81,44 +82,44 @@ async function loadAnimeIndex() {
 
 // Setup event listeners
 function setupEventListeners() {
-    // Search
+    // Search - reset to page 1 when searching
     searchInput.addEventListener('input', debounce(() => {
+        currentPage = 1;
         renderAnimeGrid();
     }, 300));
+}
+
+// Get filtered anime list
+function getFilteredAnime() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
     
-    // Filter buttons
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilter = btn.dataset.filter;
-            renderAnimeGrid();
-        });
+    return animeIndex.filter(anime => {
+        return !searchTerm || anime.title.toLowerCase().includes(searchTerm);
     });
 }
 
-// Render anime grid
+// Render anime grid with pagination
 function renderAnimeGrid() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
+    const filteredAnime = getFilteredAnime();
+    const totalPages = Math.ceil(filteredAnime.length / ITEMS_PER_PAGE);
     
-    let filteredAnime = animeIndex.filter(anime => {
-        // Search filter
-        const matchesSearch = !searchTerm || 
-            anime.title.toLowerCase().includes(searchTerm);
-        
-        // Episode filter
-        const matchesFilter = currentFilter === 'all' || 
-            (currentFilter === 'available' && anime.available_episodes > 0);
-        
-        return matchesSearch && matchesFilter;
-    });
+    // Ensure current page is valid
+    if (currentPage > totalPages) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
+    
+    // Get anime for current page
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const pageAnime = filteredAnime.slice(startIndex, endIndex);
     
     if (filteredAnime.length === 0) {
         animeGrid.innerHTML = '<div class="no-results">No anime found</div>';
+        document.getElementById('pagination').innerHTML = '';
         return;
     }
     
-    animeGrid.innerHTML = filteredAnime.map(anime => `
+    // Render anime cards
+    animeGrid.innerHTML = pageAnime.map(anime => `
         <div class="anime-card" onclick="showAnime('${encodeURIComponent(anime.title)}')">
             <div class="anime-card-image">
                 ${anime.cover_image 
@@ -135,6 +136,64 @@ function renderAnimeGrid() {
             </div>
         </div>
     `).join('');
+    
+    // Render pagination
+    renderPagination(totalPages, filteredAnime.length);
+}
+
+// Render pagination controls
+function renderPagination(totalPages, totalItems) {
+    const pagination = document.getElementById('pagination');
+    
+    if (totalPages <= 1) {
+        pagination.innerHTML = '';
+        return;
+    }
+    
+    let html = `<div class="pagination-info">Showing ${((currentPage - 1) * ITEMS_PER_PAGE) + 1}-${Math.min(currentPage * ITEMS_PER_PAGE, totalItems)} of ${totalItems}</div>`;
+    html += '<div class="pagination-controls">';
+    
+    // Previous button
+    html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← Prev</button>`;
+    
+    // Page numbers
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage < maxVisiblePages - 1) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    if (startPage > 1) {
+        html += `<button class="page-btn" onclick="goToPage(1)">1</button>`;
+        if (startPage > 2) html += `<span class="page-ellipsis">...</span>`;
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+    }
+    
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) html += `<span class="page-ellipsis">...</span>`;
+        html += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+    }
+    
+    // Next button
+    html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
+    
+    html += '</div>';
+    pagination.innerHTML = html;
+}
+
+// Go to specific page
+function goToPage(page) {
+    const totalPages = Math.ceil(getFilteredAnime().length / ITEMS_PER_PAGE);
+    if (page < 1 || page > totalPages) return;
+    
+    currentPage = page;
+    renderAnimeGrid();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Show anime detail page
