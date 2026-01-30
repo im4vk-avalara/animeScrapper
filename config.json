@@ -7,7 +7,7 @@
   "scraping": {
     "mode": "quick",
     "limit": null,
-    "quick_limit": 20,
+    "quick_limit": 10,
     "max_episodes_per_anime": 9999,
     "max_pages_per_letter": 5000
   },
