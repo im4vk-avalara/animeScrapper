@@ -27,7 +27,7 @@ permissions:
 # Allow only one deployment at a time - cancel redundant ones
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
