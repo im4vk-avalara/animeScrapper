@@ -10,7 +10,9 @@ let animeCache = {};
 let currentAnime = null;
 let currentEpisodeIndex = 0;
 let currentPage = 1;
+let currentEpisodePage = 1;
 const ITEMS_PER_PAGE = 24;
+const EPISODES_PER_PAGE = 50;
 
 // DOM Elements
 const animeGrid = document.getElementById('animeGrid');
@@ -440,18 +442,78 @@ function renderAnimeDetail(anime) {
         
         <div class="episodes-section">
             <h2 class="episodes-title">Episodes</h2>
-            <div class="episodes-grid">
-                ${sortedEpisodes.map((ep, index) => `
-                    <button class="episode-btn ${ep.has_videos ? '' : 'no-video'}" 
-                            onclick="${ep.has_videos ? `playEpisode('${encodeURIComponent(anime.title)}', ${index})` : ''}"
-                            ${ep.has_videos ? '' : 'disabled'}>
-                        <div class="ep-number">EP ${ep.episode_number}</div>
-                        <div class="ep-status">${ep.has_videos ? '▶ Play' : 'N/A'}</div>
-                    </button>
-                `).join('')}
-            </div>
+            <div id="episodesGrid" class="episodes-grid"></div>
+            <div id="episodePagination" class="pagination"></div>
         </div>
     `;
+    
+    // Store sorted episodes for pagination
+    window.currentSortedEpisodes = sortedEpisodes;
+    window.currentAnimeTitle = anime.title;
+    currentEpisodePage = 1;
+    renderEpisodes();
+}
+
+// Render episodes with pagination
+function renderEpisodes() {
+    const episodes = window.currentSortedEpisodes || [];
+    const totalPages = Math.ceil(episodes.length / EPISODES_PER_PAGE);
+    
+    // Only show pagination if more than one page
+    const needsPagination = totalPages > 1;
+    
+    // Get episodes for current page
+    const startIndex = (currentEpisodePage - 1) * EPISODES_PER_PAGE;
+    const endIndex = startIndex + EPISODES_PER_PAGE;
+    const pageEpisodes = episodes.slice(startIndex, endIndex);
+    
+    const episodesGrid = document.getElementById('episodesGrid');
+    const episodePagination = document.getElementById('episodePagination');
+    
+    // Render episode buttons
+    episodesGrid.innerHTML = pageEpisodes.map((ep, idx) => {
+        const actualIndex = startIndex + idx;
+        return `
+            <button class="episode-btn ${ep.has_videos ? '' : 'no-video'}" 
+                    onclick="${ep.has_videos ? `playEpisode('${encodeURIComponent(window.currentAnimeTitle)}', ${actualIndex})` : ''}"
+                    ${ep.has_videos ? '' : 'disabled'}>
+                <div class="ep-number">EP ${ep.episode_number}</div>
+                <div class="ep-status">${ep.has_videos ? '▶ Play' : 'N/A'}</div>
+            </button>
+        `;
+    }).join('');
+    
+    // Render pagination if needed
+    if (needsPagination) {
+        let html = `<div class="pagination-info">Episodes ${startIndex + 1}-${Math.min(endIndex, episodes.length)} of ${episodes.length}</div>`;
+        html += '<div class="pagination-controls">';
+        
+        html += `<button class="page-btn" onclick="goToEpisodePage(${currentEpisodePage - 1})" ${currentEpisodePage === 1 ? 'disabled' : ''}>← Prev</button>`;
+        
+        for (let i = 1; i <= totalPages; i++) {
+            html += `<button class="page-btn ${i === currentEpisodePage ? 'active' : ''}" onclick="goToEpisodePage(${i})">${i}</button>`;
+        }
+        
+        html += `<button class="page-btn" onclick="goToEpisodePage(${currentEpisodePage + 1})" ${currentEpisodePage === totalPages ? 'disabled' : ''}>Next →</button>`;
+        html += '</div>';
+        
+        episodePagination.innerHTML = html;
+    } else {
+        episodePagination.innerHTML = '';
+    }
+}
+
+// Go to episode page
+function goToEpisodePage(page) {
+    const episodes = window.currentSortedEpisodes || [];
+    const totalPages = Math.ceil(episodes.length / EPISODES_PER_PAGE);
+    if (page < 1 || page > totalPages) return;
+    
+    currentEpisodePage = page;
+    renderEpisodes();
+    
+    // Scroll to episodes section
+    document.querySelector('.episodes-section')?.scrollIntoView({ behavior: 'smooth' });
 }
 
 // Play episode
