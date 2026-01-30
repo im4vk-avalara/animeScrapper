@@ -99,9 +99,9 @@ main.container {
 
 /* Container */
 .container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 3rem;
 }
 
 /* Pages */
@@ -172,8 +172,26 @@ main.container {
 /* Anime Grid */
 .anime-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+    .anime-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .anime-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .anime-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* Anime Card */
