@@ -1,0 +1,39 @@
+{
+  "title": "My Neighbor Totoro",
+  "url": "https://zoroto.com.in/anime/my-neighbor-totoro/",
+  "alternative_titles": "Tonari no Totoro",
+  "description": "In 1950s Japan, Tatsuo Kusakabe relocates himself and his two daughters, Satsuki and Mei, to the countryside to be closer to their mother, who is hospitalized due to long-term illness. As the girls grow acquainted with rural life, Mei encounters a small, bunny-like creature in the yard one day. Chasing it into the forest, she finds “Totoro”—a giant, mystical forest spirit whom she soon befriends. Before long, Satsuki too meets Totoro, and the two girls suddenly find their lives filled with magical adventures in nature and fantastical creatures of the woods. [Written by MAL Rewrite]",
+  "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/566b1070fa957dfbb64176c2577e5718.jpg",
+  "genres": [
+    "Adventure",
+    "Comedy",
+    "Supernatural"
+  ],
+  "status": "Completed",
+  "type": "Movie",
+  "studio": "Studio Ghibli",
+  "duration": "1h 26m",
+  "season": "Summer 1988",
+  "released": "1988",
+  "producers": [
+    "GKIDS",
+    "Studio Fantasia",
+    "Studio Ghibli",
+    "Walt Disney Studios"
+  ],
+  "rating": null,
+  "total_episodes": 1,
+  "available_episodes": 1,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/my-neighbor-totoro-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=my-neighbor-totoro-188&ep=58274&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 12:13:31"
+}

@@ -1,0 +1,34 @@
+{
+  "title": "Road of Naruto",
+  "url": "https://zoroto.com.in/anime/road-of-naruto/",
+  "alternative_titles": "Road of Naruto",
+  "description": "In celebration of 20 years of , Studio Pierrot posted an anniversary PV on their YouTube channel. The PV is a compilation of newly reworked scenes from containing new animation.",
+  "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/fd414879634ea83ad2c4fc1c33e8ac43.jpg",
+  "genres": [
+    "Action",
+    "Fantasy",
+    "Shounen"
+  ],
+  "status": "Completed",
+  "type": "ONA",
+  "studio": "Pierrot",
+  "duration": "9m",
+  "season": "Fall 2022",
+  "released": "2022",
+  "producers": [],
+  "rating": null,
+  "total_episodes": 1,
+  "available_episodes": 1,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/road-of-naruto-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=road-of-naruto-18220&ep=94736&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 12:17:19"
+}

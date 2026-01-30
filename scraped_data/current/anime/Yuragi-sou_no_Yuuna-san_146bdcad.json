@@ -1,9 +1,30 @@
 {
   "title": "Yuragi-sou no Yuuna-san",
   "url": "https://zoroto.com.in/anime/yuragi-sou-no-yuuna-san/",
-  "description": "Once a hot springs inn, now a boarding house with extraordinarily cheap rent, Yuragi-sou is virtually uninhabited save for a few peculiar residents. As rumor has it, it is haunted by a vile ghost which scares away all potential tenants. Therefore, it is the perfect refuge for Fuyuzora Kogarashi—a broke, homeless psychic seeking an affordable roof to stay under and ghosts to exorcise.Kogarashi prepares for a face-off against the ghost, only to find out it is not as malicious as the rumors made it",
-  "genres": [],
-  "status": null,
+  "alternative_titles": "Yuragi-sou no Yuuna-san",
+  "description": "Once a hot springs inn, now a boarding house with extraordinarily cheap rent, Yuragi-sou is virtually uninhabited save for a few peculiar residents. As rumor has it, it is haunted by a vile ghost which scares away all potential tenants. Therefore, it is the perfect refuge for Fuyuzora Kogarashi—a broke, homeless psychic seeking an affordable roof to stay under and ghosts to exorcise. Kogarashi prepares for a face-off against the ghost, only to find out it is not as malicious as the rumors made it out to be. Instead, it is the ghost of a beautiful, silver-haired girl whose only recollection of her life before death is her name: Yuuna. Even more baffling is that the other tenants of Yuragi-sou not only are able to see Yuuna as well, but each has their own supernatural ability. Amidst the chaos caused by his quirky fellow residents, Kogarashi attempts to uncover the regret that keeps Yuuna anchored to the world of the living, lest she become an evil spirit sentenced to spend her afterlife in hell. [Written by MAL Rewrite]",
+  "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/bece1677671669b24877d73ff4481a67.jpg",
+  "genres": [
+    "Comedy",
+    "Ecchi",
+    "Harem",
+    "Romance",
+    "Shounen",
+    "Supernatural"
+  ],
+  "status": "Completed",
+  "type": "TV",
+  "studio": "Xebec",
+  "duration": "23m",
+  "season": "Fall 2018",
+  "released": "2018",
+  "producers": [
+    "Aniplex",
+    "Aniplex of America",
+    "BS11",
+    "Shueisha",
+    "Xebec"
+  ],
   "rating": null,
   "total_episodes": 12,
   "available_episodes": 12,
@@ -117,5 +138,5 @@
       "has_videos": true
     }
   ],
-  "scraped_at": "2026-01-29 23:37:34"
+  "scraped_at": "2026-01-30 12:23:05"
 }

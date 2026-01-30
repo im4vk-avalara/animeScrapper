@@ -1,0 +1,37 @@
+{
+  "title": "My Hero Academia Season 2: Hero Notebook",
+  "url": "https://zoroto.com.in/anime/my-hero-academia-season-2-hero-notebook/",
+  "alternative_titles": "Boku no Hero Academia 2nd Season: Hero Note",
+  "description": "Recap of Boku no Hero Academia that aired a week before the second season.",
+  "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b177b43918f62c28b19514538bd7b4d6.jpg",
+  "genres": [
+    "Action",
+    "Comedy",
+    "Super Power"
+  ],
+  "status": "Completed",
+  "type": "Special",
+  "studio": "Bones",
+  "duration": "23m",
+  "season": null,
+  "released": null,
+  "producers": [
+    "Bones",
+    "Funimation"
+  ],
+  "rating": null,
+  "total_episodes": 1,
+  "available_episodes": 1,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/my-hero-academia-season-2-hero-notebook-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=my-hero-academia-season-2-hero-notebook-2208&ep=50466&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 12:13:20"
+}

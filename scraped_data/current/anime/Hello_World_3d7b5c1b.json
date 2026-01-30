@@ -1,0 +1,51 @@
+{
+  "title": "Hello World",
+  "url": "https://zoroto.com.in/anime/hello-world/",
+  "alternative_titles": "Hello World",
+  "description": "The year is 2027, and the city of Kyoto has undergone tremendous technological advancement. Within the city lives Naomi Katagaki, a socially awkward and introverted boy with a love for books, and Ruri Ichigyou, a girl with a cold personality who is often blunt with people, but shares his love for reading. Despite having similar interests, Naomi is afraid to approach Ruri due to her unfriendly nature. One day, as Naomi goes out for a walk, a crimson aurora pierces through the sky for a brief moment before vanishing. Shortly after, he sees a three-legged crow and a mysterious hooded man who reveals himself to be Naomi from 10 years in the future, explaining that he has come to change an imminent tragic event that happens to Ruri shortly after they start dating. Initially taking his words with a grain of salt, present-day Naomi follows his future self’s instructions and starts getting closer to Ruri, determined to save her. Hello World focuses on the present Naomi alongside himself from 10 years into the future. With the help of his future self, Naomi begins his preparations to save Ruri. Will he be able to change the future? [Written by MAL Rewrite]",
+  "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/418414182fc8d705ec8a46c5cfd7bc52.jpg",
+  "genres": [
+    "Drama",
+    "Romance",
+    "Sci-Fi"
+  ],
+  "status": "Completed",
+  "type": "Movie",
+  "studio": "Graphinica",
+  "duration": "1h 37m",
+  "season": null,
+  "released": null,
+  "producers": [
+    "CyberAgent",
+    "Graphinica",
+    "Hikari TV",
+    "JR East Marketing & Communications",
+    "Kansai Telecasting",
+    "Lawson Entertainment",
+    "LINE Corporation",
+    "Mainichi Broadcasting System",
+    "Marui Group",
+    "Memory-Tech",
+    "Movic",
+    "Shueisha",
+    "Toho",
+    "Tokyo MX",
+    "TV Osaka",
+    "Yomiuri Telecasting"
+  ],
+  "rating": null,
+  "total_episodes": 1,
+  "available_episodes": 1,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/hello-world-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=hello-world-1120&ep=64868&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 12:10:22"
+}

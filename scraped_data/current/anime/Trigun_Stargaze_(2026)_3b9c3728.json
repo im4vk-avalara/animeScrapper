@@ -1,0 +1,55 @@
+{
+  "title": "Trigun Stargaze (2026)",
+  "url": "https://zoroto.com.in/anime/trigun-stargaze-2026/",
+  "alternative_titles": "Trigun Stargaze",
+  "description": "Two and a half years have passed since the Lost July incident, a catastrophe that reduced an entire city to ruins and sent shockwaves across the world. On the desert planet of No Man’s Land, Vash the Stampede, a gunslinger who swore never to take a life, faces his final confrontation with his brother, Millions Knives, who seeks the complete destruction of humanity. As their fates collide, the battle that will determine the future of both mankind and the planet begins. (Source: MAL News)",
+  "cover_image": "https://zoroto.com.in/wp-content/uploads/2026/01/trigun-stargaze-2026.jpg",
+  "genres": [
+    "Action",
+    "Adventure",
+    "Sci-Fi"
+  ],
+  "status": "Upcoming",
+  "type": "TV",
+  "studio": "Orange",
+  "duration": "Unknown",
+  "season": "Winter 2026",
+  "released": "Jan 10, 2026 to ?",
+  "producers": [
+    "Shounen Gahousha",
+    "TOHO animation"
+  ],
+  "rating": null,
+  "total_episodes": 3,
+  "available_episodes": 3,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/trigun-stargaze-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=trigun-stargaze-20377&ep=162501&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "2",
+      "episode_url": "https://zoroto.com.in/trigun-stargaze-episode-2/",
+      "episode_title": "2",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=trigun-stargaze-20377&ep=163609&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "3",
+      "episode_url": "https://zoroto.com.in/trigun-stargaze-episode-3/",
+      "episode_title": "3",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=trigun-stargaze-20377&ep=164541&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 12:21:39"
+}

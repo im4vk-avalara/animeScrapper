@@ -1,0 +1,32 @@
+{
+  "title": "Bubble",
+  "url": "https://zoroto.com.in/anime/bubble/",
+  "alternative_titles": "Bubble",
+  "description": "In a Tokyo where gravity has broken, a boy and a girl are drawn to each other…  The story is set in Tokyo, after bubbles that broke the laws of gravity rained down upon the world. Cut off from the outside world, Tokyo has become a playground for a group of young people who have lost their families, acting as a battlefield for parkour team battles as they leap from building to building.  Hibiki, a young ace known for his dangerous play style, makes a reckless move one day and plummets into the gravity-bending sea. His life is saved by Uta, a girl with mysterious powers. The pair then hear a unique sound audible only to them.  Why did Uta appear before Hibiki? Their encounter leads to a revelation that will change the world.",
+  "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/cc22d05c49a0c14672e8d7a05f1ddcc8.jpg",
+  "genres": [],
+  "status": "Completed",
+  "type": "ONA",
+  "studio": "Wit Studio",
+  "duration": "1h 40m",
+  "season": "Winter 2022",
+  "released": "2022",
+  "producers": [
+    "Warner Bros. Japan"
+  ],
+  "rating": null,
+  "total_episodes": 1,
+  "available_episodes": 1,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/bubble-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=bubble-18009&ep=90216&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 12:05:21"
+}

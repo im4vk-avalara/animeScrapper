@@ -1,0 +1,59 @@
+{
+  "title": "Pokemon Concierge Part 2 (2025)",
+  "url": "https://zoroto.com.in/anime/pokemon-concierge-part-2-2025/",
+  "alternative_titles": null,
+  "description": "Second part of Pokémon Concierge.",
+  "cover_image": "https://zoroto.com.in/wp-content/uploads/2025/09/pokemon-concierge-part-2-2025.jpg",
+  "genres": [
+    "Fantasy"
+  ],
+  "status": "Ongoing",
+  "type": "ONA",
+  "studio": "dwarf",
+  "duration": "Unknown",
+  "season": null,
+  "released": "Sep 4, 2025",
+  "producers": [],
+  "rating": null,
+  "total_episodes": 4,
+  "available_episodes": 4,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/pokemon-concierge-part-2-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=pokemon-concierge-part-2-19725&ep=144456&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "2",
+      "episode_url": "https://zoroto.com.in/pokemon-concierge-part-2-episode-2/",
+      "episode_title": "2",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=pokemon-concierge-part-2-19725&ep=144457&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "3",
+      "episode_url": "https://zoroto.com.in/pokemon-concierge-part-2-episode-3/",
+      "episode_title": "3",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=pokemon-concierge-part-2-19725&ep=144458&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "4",
+      "episode_url": "https://zoroto.com.in/pokemon-concierge-part-2-episode-4/",
+      "episode_title": "4",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=pokemon-concierge-part-2-19725&ep=144459&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 12:15:10"
+}

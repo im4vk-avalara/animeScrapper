@@ -1,0 +1,75 @@
+{
+  "title": "Bikini Warriors OVA",
+  "url": "https://zoroto.com.in/anime/bikini-warriors-ova/",
+  "alternative_titles": "Bikini Warriors OVA",
+  "description": "New OVAs slated for release in Fall 2016. The OVAs will include two new characters, Cleric and Kunoichi. (Source: MAL News)",
+  "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b1dd0432ed7893cd3f95d747108e2eb7.jpg",
+  "genres": [
+    "Comedy",
+    "Ecchi",
+    "Fantasy",
+    "Parody"
+  ],
+  "status": "Completed",
+  "type": "OVA",
+  "studio": "feel.",
+  "duration": "4m",
+  "season": null,
+  "released": null,
+  "producers": [
+    "feel.",
+    "Hobby Japan",
+    "PRA"
+  ],
+  "rating": null,
+  "total_episodes": 5,
+  "available_episodes": 5,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/bikini-warriors-ova-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=bikini-warriors-ova-9190&ep=73441&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "2",
+      "episode_url": "https://zoroto.com.in/bikini-warriors-ova-episode-2/",
+      "episode_title": "2",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=bikini-warriors-ova-9190&ep=73442&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "3",
+      "episode_url": "https://zoroto.com.in/bikini-warriors-ova-episode-3/",
+      "episode_title": "3",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=bikini-warriors-ova-9190&ep=73443&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "4",
+      "episode_url": "https://zoroto.com.in/bikini-warriors-ova-episode-4/",
+      "episode_title": "4",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=bikini-warriors-ova-9190&ep=73444&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "5",
+      "episode_url": "https://zoroto.com.in/bikini-warriors-ova-episode-5/",
+      "episode_title": "5",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=bikini-warriors-ova-9190&ep=73445&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 12:04:54"
+}

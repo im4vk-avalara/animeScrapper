@@ -1,0 +1,37 @@
+{
+  "title": "Midori",
+  "url": "https://zoroto.com.in/anime/midori/",
+  "alternative_titles": "Chika Gentou Gekiga: Shoujo Tsubaki",
+  "description": "Behind the colorful curtains and extravagant performances, there lies the dark side of a circus life, hidden away from the smiles and praises of the audience. Set in early 20th century Japan, Midori: Shoujo Tsubaki highlights the misdeeds that occur in circus camps. Midori was an innocent young girl who enjoyed her life as an elementary student to the fullest. However, everything changed after her mother fell ill. Eventually, Midori is forced to stop going to school and, instead, sells flowers in the city. When her mother dies tragically, Midori meets a stranger who leads her towards the circus. What awaits her will change her life forever… In a life where nothing seems to go right, will Midori lose faith and give up? Or will she manage to stay strong in hopes of a better future?",
+  "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f314c86b854fa98ded5f9fb0e03ee591.jpg",
+  "genres": [
+    "Drama",
+    "Historical",
+    "Horror"
+  ],
+  "status": "Completed",
+  "type": "Movie",
+  "studio": null,
+  "duration": "48m",
+  "season": "Spring 1992",
+  "released": "1992",
+  "producers": [
+    "Imagica",
+    "Mippei Eigeki Kiryuukan"
+  ],
+  "rating": null,
+  "total_episodes": 1,
+  "available_episodes": 1,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/midori-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=midori-8204&ep=88262&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 12:12:47"
+}

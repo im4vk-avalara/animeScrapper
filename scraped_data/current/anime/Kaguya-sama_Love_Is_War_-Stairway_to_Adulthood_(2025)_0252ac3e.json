@@ -1,0 +1,43 @@
+{
+  "title": "Kaguya-sama: Love Is War -Stairway to Adulthood (2025)",
+  "url": "https://zoroto.com.in/anime/kaguya-sama-love-is-war-stairway-to-adulthood-2025/",
+  "alternative_titles": "Kaguya-sama: Love Is War -Stairway to Adulthood-",
+  "description": "TV special for Kaguya-sama wa Kokurasetai.",
+  "cover_image": "https://zoroto.com.in/wp-content/uploads/2026/01/kaguya-sama-love-is-war-stairway-to-adulthood-2025.jpg",
+  "genres": [
+    "Comedy",
+    "Drama",
+    "Romance"
+  ],
+  "status": "Completed",
+  "type": "TV",
+  "studio": "A-1 Pictures",
+  "duration": "Unknown",
+  "season": null,
+  "released": "Dec 31, 2025",
+  "producers": [],
+  "rating": null,
+  "total_episodes": 2,
+  "available_episodes": 2,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/kaguya-sama-love-is-war-stairway-to-adulthood-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=kaguya-sama-love-is-war-stairway-to-adulthood-20441&ep=161813&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "2",
+      "episode_url": "https://zoroto.com.in/kaguya-sama-love-is-war-stairway-to-adulthood-episode-2/",
+      "episode_title": "2",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=kaguya-sama-love-is-war-stairway-to-adulthood-20441&ep=161817&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 12:11:27"
+}
