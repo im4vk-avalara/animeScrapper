@@ -5,13 +5,14 @@ on:
   schedule:
     - cron: '0 2 * * *'
   
-  # Run on push to main (only if scraper code changes)
+  # Run on push to main (only if scraper code/config changes)
   push:
     branches:
       - main
     paths:
       - 'unified_scraper_fast.py'
       - 'requirements-fast.txt'
+      - 'config.json'
       - '.github/workflows/scrape.yml'
   
   # Allow manual trigger
