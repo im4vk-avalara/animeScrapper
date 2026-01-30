@@ -237,22 +237,34 @@ class SmartHTMLExtractor:
             if og_image and og_image.get('content'):
                 result['cover_image'] = og_image['content']
         
-        # Extract description from the mindesc div first
-        mindesc = soup.find('div', class_='mindesc')
-        if mindesc:
-            # Get first text that's not boilerplate
-            text = mindesc.get_text(strip=True)
-            if text and 'Zoro To' not in text:
-                result['description'] = text[:1000]
+        # Extract description - prioritize entry-content with itemprop="description"
+        # This contains the actual synopsis
+        entry_content = soup.find('div', class_='entry-content', attrs={'itemprop': 'description'})
+        if entry_content:
+            # Get text from paragraph elements
+            paragraphs = entry_content.find_all('p')
+            if paragraphs:
+                text = ' '.join(p.get_text(strip=True) for p in paragraphs)
+                if text and 'Watch streaming' not in text and len(text) > 20:
+                    result['description'] = text[:1500]
         
-        # Fallback: Try to get description from entry-content or meta
+        # Fallback: Try entry-content without itemprop
         if not result['description']:
-            meta_desc = soup.find('meta', attrs={'name': 'description'})
-            if meta_desc and meta_desc.get('content'):
-                text = meta_desc['content']
-                # Remove boilerplate text
-                if 'NO BUFFERING' not in text:
-                    result['description'] = text[:1000]
+            entry_content = soup.find('div', class_='entry-content')
+            if entry_content:
+                text = entry_content.get_text(strip=True)
+                if text and 'Watch streaming' not in text and 'Zoro To' not in text and len(text) > 20:
+                    result['description'] = text[:1500]
+        
+        # Fallback: Try synopsis section
+        if not result['description']:
+            synopsis = soup.find('h2', string=re.compile(r'Synopsis', re.I))
+            if synopsis:
+                next_div = synopsis.find_next('div')
+                if next_div:
+                    text = next_div.get_text(strip=True)
+                    if text and 'Watch streaming' not in text and len(text) > 20:
+                        result['description'] = text[:1500]
         
         # Extract metadata from .spe spans
         spe_div = soup.find('div', class_='spe')
