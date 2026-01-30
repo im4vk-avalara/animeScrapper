@@ -9,7 +9,7 @@
 <body>
     <nav class="navbar">
         <div class="nav-brand">
-            <a href="index.html">🎬 Anime Stream</a>
+            <a href="#" onclick="showHome(); return false;">🎬 Anime Stream</a>
         </div>
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search anime...">
@@ -42,7 +42,7 @@
 
         <!-- Episode Player Page -->
         <div id="playerPage" class="page">
-            <button class="back-btn" onclick="showAnime(currentAnime)">← Back to Episodes</button>
+            <button class="back-btn" onclick="goBackToAnime()">← Back to Episodes</button>
             <div id="playerContainer">
                 <!-- Video player will be loaded here -->
             </div>

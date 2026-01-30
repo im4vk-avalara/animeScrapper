@@ -23,9 +23,34 @@ document.addEventListener('DOMContentLoaded', init);
 async function init() {
     console.log('Initializing app...');
     setupEventListeners();
+    setupBrowserNavigation();
     await loadAnimeIndex();
     console.log('Index loaded, rendering grid with', animeIndex.length, 'anime');
     renderAnimeGrid();
+}
+
+// Handle browser back/forward buttons
+function setupBrowserNavigation() {
+    window.addEventListener('popstate', (event) => {
+        // Stop any playing video when navigating with browser buttons
+        stopVideo();
+        
+        if (event.state) {
+            if (event.state.page === 'anime' && event.state.title) {
+                showAnime(encodeURIComponent(event.state.title));
+            } else if (event.state.page === 'player') {
+                // Don't auto-play when going back to player
+                showPage('animePage');
+            } else {
+                showPage('homePage');
+            }
+        } else {
+            showPage('homePage');
+        }
+    });
+    
+    // Set initial state
+    history.replaceState({ page: 'home' }, '', '');
 }
 
 // Load anime index
@@ -123,7 +148,7 @@ function renderAnimeGrid() {
 }
 
 // Show anime detail page
-async function showAnime(encodedTitle) {
+async function showAnime(encodedTitle, pushHistory = true) {
     const title = decodeURIComponent(encodedTitle);
     currentAnime = title;
     
@@ -134,8 +159,16 @@ async function showAnime(encodedTitle) {
         return;
     }
     
+    // Stop any playing video
+    stopVideo();
+    
     // Show anime page
     showPage('animePage');
+    
+    // Update browser history
+    if (pushHistory) {
+        history.pushState({ page: 'anime', title: title }, '', `#anime/${encodeURIComponent(title)}`);
+    }
     
     const animeDetail = document.getElementById('animeDetail');
     animeDetail.innerHTML = '<div class="loading">Loading anime details...</div>';
@@ -342,7 +375,7 @@ function renderAnimeDetail(anime) {
 }
 
 // Play episode
-async function playEpisode(encodedTitle, episodeIndex) {
+async function playEpisode(encodedTitle, episodeIndex, pushHistory = true) {
     const title = decodeURIComponent(encodedTitle);
     currentAnime = title;
     currentEpisodeIndex = episodeIndex;
@@ -366,8 +399,20 @@ async function playEpisode(encodedTitle, episodeIndex) {
         return;
     }
     
+    // Stop any existing video before loading new one
+    stopVideo();
+    
     // Show player page
     showPage('playerPage');
+    
+    // Update browser history
+    if (pushHistory) {
+        history.pushState(
+            { page: 'player', title: title, episode: episodeIndex }, 
+            '', 
+            `#watch/${encodeURIComponent(title)}/${episodeIndex}`
+        );
+    }
     
     const playerContainer = document.getElementById('playerContainer');
     const videoUrl = episode.video_sources[0];
@@ -406,8 +451,23 @@ function playNext() {
     }
 }
 
+// Stop any playing video
+function stopVideo() {
+    const playerContainer = document.getElementById('playerContainer');
+    if (playerContainer) {
+        // Remove iframe to stop video/audio
+        playerContainer.innerHTML = '';
+    }
+}
+
 // Show specific page
 function showPage(pageId) {
+    // Stop video when leaving player page
+    const currentPage = document.querySelector('.page.active');
+    if (currentPage && currentPage.id === 'playerPage' && pageId !== 'playerPage') {
+        stopVideo();
+    }
+    
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
     window.scrollTo(0, 0);
@@ -415,7 +475,19 @@ function showPage(pageId) {
 
 // Show home page
 function showHome() {
+    stopVideo();
     showPage('homePage');
+    history.pushState({ page: 'home' }, '', '#');
+}
+
+// Go back to anime detail page
+function goBackToAnime() {
+    stopVideo();
+    if (currentAnime) {
+        showPage('animePage');
+    } else {
+        showPage('homePage');
+    }
 }
 
 // Utility functions
