@@ -1,0 +1,28 @@
+{
+  "website": {
+    "base_url": "https://zoroto.com.in",
+    "anime_list_path": "/anime/list-mode/"
+  },
+  
+  "scraping": {
+    "mode": "quick",
+    "limit": null,
+    "quick_limit": 20,
+    "max_episodes_per_anime": 9999,
+    "max_pages_per_letter": 5000
+  },
+  
+  "parallel": {
+    "workers": 7,
+    "episode_workers": 5,
+    "delay": 0.3,
+    "request_timeout": 30
+  },
+  
+  "output": {
+    "output_dir": "scraped_data",
+    "output_format": "json",
+    "log_file": "unified_scraper_fast.log",
+    "rotate_data": true
+  }
+}

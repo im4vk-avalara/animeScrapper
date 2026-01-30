@@ -40,39 +40,49 @@ except ImportError:
 
 
 # =============================================================================
-# CONFIGURATION - All inputs in one place
+# CONFIGURATION - Loaded from config.json (single source of truth)
 # =============================================================================
 
+def _load_config():
+    """Load configuration from config.json"""
+    config_path = Path(__file__).parent / "config.json"
+    if config_path.exists():
+        with open(config_path, 'r') as f:
+            return json.load(f)
+    return {}
+
+_config = _load_config()
+
 class Config:
-    """All configurable parameters in one place"""
+    """All configurable parameters - loaded from config.json"""
     
     # --- Website Configuration ---
-    BASE_URL = "https://zoroto.com.in"           # Target website base URL
-    AZ_LIST_PATH = "/anime/list-mode/"           # Path to A-Z anime list
+    BASE_URL = _config.get('website', {}).get('base_url', "https://zoroto.com.in")
+    AZ_LIST_PATH = _config.get('website', {}).get('anime_list_path', "/anime/list-mode/")
     
     # --- Scraping Configuration ---
-    MODE = "quick"                               # "quick" = limited anime, "full" = all anime
-    LIMIT = None                                # Limit number of anime (None = no limit)
-    QUICK_LIMIT = 20                            # In quick mode, limit to this many anime
-    MAX_EPISODES_PER_ANIME = 9999               # Max episodes to scrape per anime
-    MAX_PAGES_PER_LETTER = 5000                 # Max pages to scrape per letter in full mode
+    MODE = _config.get('scraping', {}).get('mode', "full")
+    LIMIT = _config.get('scraping', {}).get('limit', None)
+    QUICK_LIMIT = _config.get('scraping', {}).get('quick_limit', 20)
+    MAX_EPISODES_PER_ANIME = _config.get('scraping', {}).get('max_episodes_per_anime', 9999)
+    MAX_PAGES_PER_LETTER = _config.get('scraping', {}).get('max_pages_per_letter', 5000)
     
     # --- Parallel Processing ---
-    WORKERS = 7                                  # Number of parallel workers for anime
-    EPISODE_WORKERS = 5                          # Number of parallel workers for episodes WITHIN each anime
-    DELAY = 0.3                                  # Delay between requests (seconds)
-    REQUEST_TIMEOUT = 30                         # Request timeout (seconds)
+    WORKERS = _config.get('parallel', {}).get('workers', 7)
+    EPISODE_WORKERS = _config.get('parallel', {}).get('episode_workers', 5)
+    DELAY = _config.get('parallel', {}).get('delay', 0.3)
+    REQUEST_TIMEOUT = _config.get('parallel', {}).get('request_timeout', 30)
     
     # --- Output Configuration ---
-    OUTPUT_DIR = "scraped_data"                  # Base output directory
-    OUTPUT_FORMAT = "json"                       # "json" or "toon"
-    LOG_FILE = "unified_scraper_fast.log"        # Log file name
-    ROTATE_DATA = True                           # Rotate: old→deleted, current→old, new→current
+    OUTPUT_DIR = _config.get('output', {}).get('output_dir', "scraped_data")
+    OUTPUT_FORMAT = _config.get('output', {}).get('output_format', "json")
+    LOG_FILE = _config.get('output', {}).get('log_file', "unified_scraper_fast.log")
+    ROTATE_DATA = _config.get('output', {}).get('rotate_data', True)
     
     # --- CI/GitHub Actions ---
-    IS_CI = bool(os.environ.get('GITHUB_ACTIONS'))  # Auto-detect GitHub Actions only
+    IS_CI = bool(os.environ.get('GITHUB_ACTIONS'))
     
-    # --- HTTP Headers ---
+    # --- HTTP Headers (not in config.json) ---
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     ACCEPT = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
     ACCEPT_LANGUAGE = "en-US,en;q=0.5"

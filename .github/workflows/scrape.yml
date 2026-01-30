@@ -18,15 +18,16 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Scraping mode'
+        description: 'Scraping mode (leave empty to use config.json)'
         required: false
-        default: 'full'
+        default: ''
         type: choice
         options:
+          - ''
           - quick
           - full
       limit:
-        description: 'Limit number of anime (empty for all)'
+        description: 'Limit number of anime (leave empty to use config.json)'
         required: false
         default: ''
 
@@ -62,11 +63,18 @@ jobs:
 
       - name: Run scraper
         run: |
-          # Set mode and limit from inputs or defaults
-          MODE="${{ github.event.inputs.mode || 'full' }}"
-          LIMIT="${{ github.event.inputs.limit }}"
+          # Read defaults from config.json (single source of truth)
+          CONFIG_MODE=$(python -c "import json; print(json.load(open('config.json')).get('scraping',{}).get('mode','full'))")
+          CONFIG_LIMIT=$(python -c "import json; print(json.load(open('config.json')).get('scraping',{}).get('limit','') or '')")
           
-          echo "Running scraper with mode=$MODE, limit=$LIMIT"
+          # Use workflow inputs if provided, otherwise use config.json values
+          MODE="${{ github.event.inputs.mode }}"
+          MODE="${MODE:-$CONFIG_MODE}"
+          
+          LIMIT="${{ github.event.inputs.limit }}"
+          LIMIT="${LIMIT:-$CONFIG_LIMIT}"
+          
+          echo "Running scraper with mode=$MODE, limit=$LIMIT (from config.json)"
           
           # Build command
           CMD="python unified_scraper_fast.py --mode $MODE"
