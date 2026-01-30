@@ -42,6 +42,20 @@ body {
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    height: 50px;
+    width: auto;
+    transition: transform 0.2s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.nav-logo:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
 }
 
 .search-box input {
