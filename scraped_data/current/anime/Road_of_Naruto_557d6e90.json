@@ -1,0 +1,22 @@
+{
+  "title": "Road of Naruto",
+  "url": "https://zoroto.com.in/anime/road-of-naruto/",
+  "description": "In celebration of 20 years of , Studio Pierrot posted an anniversary PV on their YouTube channel. The PV is a compilation of newly reworked scenes from containing new animation.",
+  "genres": [],
+  "status": null,
+  "rating": null,
+  "total_episodes": 1,
+  "available_episodes": 1,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/road-of-naruto-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=road-of-naruto-18220&ep=94736&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 04:51:36"
+}

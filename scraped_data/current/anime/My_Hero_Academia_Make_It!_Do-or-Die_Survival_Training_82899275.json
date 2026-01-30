@@ -1,0 +1,31 @@
+{
+  "title": "My Hero Academia: Make It! Do-or-Die Survival Training",
+  "url": "https://zoroto.com.in/anime/my-hero-academia-make-it-do-or-die-survival-training/",
+  "description": "In this brand-new adventure, some Class 1-A students are sent to hone their survival skills at a training course. Having yet to receive their provisional licenses, they’re eager to cut loose and have a little fun.They quickly discover that the danger they face is no simulation! It’s going to take their combined training, teamwork, and quick thinking if they’re going to pass this assignment!(Source: Funimation)",
+  "genres": [],
+  "status": null,
+  "rating": null,
+  "total_episodes": 2,
+  "available_episodes": 2,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/my-hero-academia-make-it-do-or-die-survival-training-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=my-hero-academia-make-it-do-or-die-survival-training-3432&ep=52295&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "2",
+      "episode_url": "https://zoroto.com.in/my-hero-academia-make-it-do-or-die-survival-training-episode-2/",
+      "episode_title": "2",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=my-hero-academia-make-it-do-or-die-survival-training-3432&ep=52296&server=hd-2&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 04:47:05"
+}

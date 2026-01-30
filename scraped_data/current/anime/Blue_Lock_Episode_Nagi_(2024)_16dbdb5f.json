@@ -1,0 +1,65 @@
+{
+  "title": "Blue Lock: Episode Nagi (2024)",
+  "url": "https://zoroto.com.in/anime/blue-lock-episode-nagi-2024/",
+  "description": "A spin-off of Blue Lock focusing on Seishirou Nagi.",
+  "genres": [],
+  "status": null,
+  "rating": null,
+  "total_episodes": 6,
+  "available_episodes": 3,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://www.facebook.com/sharer/sharer.php?u=https://zoroto.com.in/anime/blue-lock-episode-nagi-2024/&t=Blue Lock: Episode Nagi (2024)",
+      "episode_title": "Facebook",
+      "video_sources": [],
+      "has_videos": false
+    },
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/blue-lock-episode-nagi-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=blue-lock-episode-nagi-19085&ep=128666&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "2",
+      "episode_url": "https://www.twitter.com/intent/tweet?url=https://zoroto.com.in/anime/blue-lock-episode-nagi-2024/&text=Blue Lock: Episode Nagi (2024)",
+      "episode_title": "Twitter",
+      "video_sources": [
+        "https://abs.twimg.com/videos/grok-4-key-visual.mp4",
+        "https://abs.twimg.com/sticky/videos/inapp_dark_square_v4.mp4",
+        "https://abs.twimg.com/sticky/videos/inapp_dim_square_v4.mp4",
+        "https://abs.twimg.com/sticky/videos/inapp_light_square_v4.mp4"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "3",
+      "episode_url": "whatsapp://send?text=Blue Lock: Episode Nagi (2024) https://zoroto.com.in/anime/blue-lock-episode-nagi-2024/",
+      "episode_title": "WhatsApp",
+      "video_sources": [],
+      "has_videos": false
+    },
+    {
+      "episode_number": "4",
+      "episode_url": "https://pinterest.com/pin/create/button/?url=https://zoroto.com.in/anime/blue-lock-episode-nagi-2024/&media=https://zoroto.com.in/wp-content/uploads/2025/08/blue-lock-episode-nagi-2024.jpg&description=Blue Lock: Episode Nagi (2024)",
+      "episode_title": "Pinterest",
+      "video_sources": [
+        "https://ct.pinterest.com/ct.html",
+        "https://s.pinimg.com/webapp/www/[username]/video_pins-7e96bf13cd1f5bf9.mjs"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "5",
+      "episode_url": "https://t.me/share/url?url=https://zoroto.com.in/anime/blue-lock-episode-nagi-2024/&text=Blue Lock: Episode Nagi (2024)",
+      "episode_title": "Telegram",
+      "video_sources": [],
+      "has_videos": false
+    }
+  ],
+  "scraped_at": "2026-01-30 04:37:11"
+}

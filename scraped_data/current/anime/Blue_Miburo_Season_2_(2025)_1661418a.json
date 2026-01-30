@@ -1,0 +1,58 @@
+{
+  "title": "Blue Miburo Season 2 (2025)",
+  "url": "https://zoroto.com.in/anime/blue-miburo-season-2-2025/",
+  "description": "Second season of Ao no Miburo.",
+  "genres": [],
+  "status": null,
+  "rating": null,
+  "total_episodes": 5,
+  "available_episodes": 5,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_url": "https://zoroto.com.in/blue-miburo-season-2-episode-1/",
+      "episode_title": "1",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=blue-miburo-season-2-20073&ep=160997&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "2",
+      "episode_url": "https://zoroto.com.in/blue-miburo-season-2-episode-2/",
+      "episode_title": "2",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=blue-miburo-season-2-20073&ep=161401&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "3",
+      "episode_url": "https://zoroto.com.in/blue-miburo-season-2-episode-3/",
+      "episode_title": "3",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=blue-miburo-season-2-20073&ep=162481&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "4",
+      "episode_url": "https://zoroto.com.in/blue-miburo-season-2-episode-4/",
+      "episode_title": "4",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=blue-miburo-season-2-20073&ep=163593&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    },
+    {
+      "episode_number": "5",
+      "episode_url": "https://zoroto.com.in/blue-miburo-season-2-episode-5/",
+      "episode_title": "5",
+      "video_sources": [
+        "https://gogoanime.com.by/streaming.php?id=blue-miburo-season-2-20073&ep=164525&server=hd-1&type=sub"
+      ],
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30 04:37:10"
+}
