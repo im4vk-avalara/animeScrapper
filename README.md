@@ -1,408 +1,126 @@
-# Anime Scraping Pipeline
+## Local testing
 
-[![Scrape Anime Data](https://github.com/YOUR_USERNAME/anime-scraper/actions/workflows/scrape-anime.yml/badge.svg)](https://github.com/YOUR_USERNAME/anime-scraper/actions/workflows/scrape-anime.yml)
-[![Test Scrapers](https://github.com/YOUR_USERNAME/anime-scraper/actions/workflows/test-scraper.yml/badge.svg)](https://github.com/YOUR_USERNAME/anime-scraper/actions/workflows/test-scraper.yml)
-
-Complete pipeline for scraping anime data from zoroto.com.in with video URLs.
-
-## Features
-
-- 🎬 Scrapes 4000+ anime with metadata
-- 📺 Extracts 50,000+ episodes with URLs
-- 🎥 Finds 100,000+ video iframe sources
-- ⚡ Parallel processing for speed
-- 🔄 Resume capability
-- 📊 Organized website-ready output
-- 🤖 Automated GitHub Actions pipeline
-- 📦 **TOON format support** - 30-60% token savings for LLM workflows
-
-## Quick Start
-
-### Local Development
-
-```bash
-# 1. Clone repository
-git clone https://github.com/YOUR_USERNAME/anime-scraper.git
-cd anime-scraper
-
-# 2. Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Run complete pipeline (JSON format)
-./run_pipeline.sh
-
-# Or run with TOON format (30-60% smaller files)
-./run_pipeline.sh full 10 toon
-
-# Or run steps individually (all parallel):
-python zoroto_scraper.py --mode letters
-python anime_episode_scraper_parallel.py -i zoroto_complete.json --workers 10
-python video_url_scraper_parallel.py -i anime_data/episodes --workers 10
-python data_organizer.py
-```
-
-### Quick Test
-
-```bash
-# Test with 5 anime (JSON) - using parallel scrapers
-python zoroto_scraper.py --mode quick -o test.json
-python anime_episode_scraper_parallel.py -i test.json --limit 5 --workers 5
-python video_url_scraper_parallel.py -i anime_data/episodes --limit 5 --workers 5
-python data_organizer.py
-
-# Test with TOON format
-python zoroto_scraper.py --mode quick -o test.toon --format toon
-python anime_episode_scraper_parallel.py -i test.toon --limit 5 --workers 5 --format toon
-python video_url_scraper_parallel.py -i anime_data/episodes --limit 5 --workers 5 --format toon
-python data_organizer.py --output-format toon
-```
-
-## Pipeline Steps
-
-1. **Anime List** → Scrapes all anime titles and URLs
-2. **Episodes** → Extracts episode lists for each anime
-3. **Video URLs** → Finds iframe/video sources for each episode
-4. **Organize** → Formats data for website consumption
-
-## Project Structure
-
-```
-anime-scraper/
-├── .github/workflows/        # GitHub Actions CI/CD
-│   ├── scrape-anime.yml      # Main scraping pipeline
-│   └── test-scraper.yml      # Testing workflow
-│
-├── scrapers/                 # Scraper scripts
-│   ├── zoroto_scraper.py              # Step 1: Scrape anime list
-│   ├── anime_episode_scraper_parallel.py  # Step 2: Parallel episode scraper (fast)
-│   ├── anime_episode_scraper.py       # Step 2: Sequential episode scraper
-│   ├── video_url_scraper_parallel.py  # Step 3: Parallel video URL scraper (fast)
-│   ├── video_url_scraper.py           # Step 3: Sequential video URL scraper
-│   ├── video_url_extractor.py         # Extract direct URLs from iframes
-│   └── data_organizer.py              # Step 4: Organize for website
-│
-├── docs/                     # Documentation
-│   ├── COMPLETE_GUIDE.md
-│   ├── FINAL_DATA_STRUCTURE.md
-│   └── ...
-│
-├── output/                   # Generated data (gitignored)
-│   ├── anime_data/
-│   ├── video_data/
-│   └── website_data/
-│
-├── requirements.txt          # Python dependencies
-├── .gitignore               # Git ignore rules
-└── README.md                # This file
-```
-
-## Output Data
-
-### Website-Ready Format
-
-```
-website_data/
-├── anime_index.json          # Lightweight index
-├── search_data.json          # Search-optimized
-├── statistics.json           # Dataset stats
-└── [individual files]/       # One per anime
-```
-
-### Data Schema
-
-**JSON Format:**
-```json
-{
-  "title": "One Piece",
-  "total_episodes": 1000,
-  "episodes": [
-    {
-      "episode_number": "1",
-      "episode_url": "https://...",
-      "video_sources": [
-        "https://streamx2.com/embed/..."
-      ],
-      "has_videos": true
-    }
-  ]
-}
-```
-
-**TOON Format (Token-Oriented Object Notation):**
-```
-title: One Piece
-total_episodes: 1000
-episodes[1000]{episode_number,episode_url,video_sources,has_videos}:
-  1,https://...,https://streamx2.com/embed/...,true
-  2,https://...,https://streamx2.com/embed/...,true
-```
-
-## TOON Format
-
-TOON (Token-Oriented Object Notation) is a data format optimized for LLM workflows that provides **30-60% token savings** compared to JSON.
-
-### Why TOON?
-
-| Feature | JSON | TOON |
-|---------|------|------|
-| Token efficiency | Verbose | 30-60% smaller |
-| Arrays of objects | Repeated keys | Tabular format |
-| Human readable | Moderate | Excellent |
-| LLM optimized | No | Yes |
-
-### TOON Benefits for This Project
-
-- **Episode lists**: Uniform arrays of episodes use tabular format
-- **Anime index**: Large lists compress significantly  
-- **Search data**: Optimized for LLM context windows
-- **Cost savings**: Fewer tokens = lower API costs
-
-### Example Comparison
-
-**JSON (847 tokens):**
-```json
-{
-  "anime_list": [
-    {"title": "One Piece", "url": "https://..."},
-    {"title": "Naruto", "url": "https://..."},
-    {"title": "Bleach", "url": "https://..."}
-  ]
-}
-```
-
-**TOON (312 tokens - 63% savings):**
-```
-anime_list[3]{title,url}:
-  One Piece,https://...
-  Naruto,https://...
-  Bleach,https://...
-```
-
-### Using TOON
-
-```bash
-# Full pipeline with TOON
-./run_pipeline.sh full 10 toon
-
-# Individual scrapers
-python zoroto_scraper.py --format toon -o anime.toon
-python anime_episode_scraper.py -i anime.toon --format toon
-python video_url_scraper_parallel.py -i anime_data/episodes --format toon
-python data_organizer.py --output-format toon
-```
-
-### Converting Between Formats
-
-```python
-import toon
-import json
-
-# JSON to TOON
-with open('data.json') as f:
-    data = json.load(f)
-toon_str = toon.encode(data)
-
-# TOON to JSON
-with open('data.toon') as f:
-    toon_str = f.read()
-data = toon.decode(toon_str)
-```
-
-## GitHub Actions
-
-### Automated Scraping
-
-The pipeline runs automatically:
-- **Schedule**: Daily at 2 AM UTC
-- **Manual**: Can trigger manually with custom options
-
-### Manual Trigger
-
-Go to Actions → Scrape Anime Data → Run workflow
-
-Options:
-- `limit`: Number of anime to scrape (for testing)
-- `workers`: Parallel workers (5-10 recommended)
-
-### Artifacts
-
-After each run, artifacts are available for 30 days:
-- `anime-list`: Initial anime list
-- `episode-data`: Episode information
-- `video-data`: Video URLs
-- `website-data`: Final organized data
-
-## Configuration
-
-### Environment Variables
-
-Create `.env` file (optional):
-```bash
-SCRAPER_DELAY=0.1
-PARALLEL_WORKERS=10
-OUTPUT_FORMAT=both
-```
-
-### GitHub Secrets
-
-No secrets required for basic scraping. Optional:
-- `DEPLOY_TOKEN`: For deploying to external hosting
-
-## Usage Examples
-
-### React Component
-
-```jsx
-import { useState, useEffect } from 'react';
-
-function AnimePlayer({ animeFile }) {
-  const [anime, setAnime] = useState(null);
-  
-  useEffect(() => {
-    fetch(`/data/${animeFile}.json`)
-      .then(r => r.json())
-      .then(data => setAnime(data));
-  }, [animeFile]);
-
-  if (!anime) return <div>Loading...</div>;
-
-  return (
-    <div>
-      <h2>{anime.title}</h2>
-      {anime.episodes.map(ep => (
-        <div key={ep.episode_number}>
-          Episode {ep.episode_number}
-          {ep.video_sources.map(src => (
-            <iframe src={src} width="800" height="450" />
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
-```
-
-### Simple HTML
-
-```html
-<script>
-  fetch('/data/anime_index.json')
-    .then(r => r.json())
-    .then(data => {
-      data.anime_list.forEach(anime => {
-        document.write(`<h3>${anime.title}</h3>`);
-      });
-    });
-</script>
-```
-
-## Performance
-
-| Step | Time | Output |
-|------|------|--------|
-| Anime List | 10-15 min | 4000 anime |
-| Episodes | 2-3 hours | 50,000 episodes |
-| Video URLs (parallel) | 3-6 hours | 100,000 sources |
-| Organize | 2 min | Website data |
-| **Total** | **~6-9 hours** | Complete DB |
+pip install -r requirements-fast.txt
+python serve.py
 
 ## Deployment
 
-### GitHub Pages
+git add .
+git commit -m "Deployment"
+git push origin main
 
-Automatically deploys to `gh-pages` branch:
-```
-https://YOUR_USERNAME.github.io/anime-scraper/
-```
 
-### Other Platforms
 
-```bash
-# Netlify
-netlify deploy --prod --dir=website_data
 
-# Vercel
-vercel --prod website_data
+Good question! Sites like anikai.to typically work as aggregators, not hosts:
+How Anime Streaming Sites Work
+1. Anime Metadata (titles, descriptions, images)
+They scrape or sync from:
+MyAnimeList (MAL) - largest anime database
+AniList - another popular database
+Kitsu - anime tracking API
+Or maintain their own database built from these sources
+2. Video Sources
+They don't host videos themselves. Instead they:
+Link to third-party video hosting services like:
+Megacloud
+Vidcloud / VidStreaming
+RapidCloud
+Filemoon
+StreamSB
+And many others
+The Flow
+User clicks "Play Episode 1"    ↓Site calls /ajax/links/list?token=xxx    ↓Returns list of servers (Megacloud, Vidcloud, etc.)    ↓User selects server → loads iframe from that provider    ↓Third-party player streams the video
+That's why we saw the API returning "server" options - each server is a different video host. The actual video decryption/streaming happens on those third-party services, which have their own protections.
+For your existing scraper (hianime.phtm), it likely uses similar third-party embed sources. Want me to check how your current scraper handles video URLs?
+help me do that same, tell me steps
 
-# AWS S3
-aws s3 sync website_data s3://your-bucket/
-```
+I'll help you build a proper anime aggregator. Here's the plan:
+Step 1: Get Anime Metadata (Legal APIs)
+Option A: AniList GraphQL API (Free, no key needed)
+Anime titles, descriptions, images, genres, episodes
+https://anilist.co/graphiql
+Option B: Jikan API (Unofficial MAL API, free)
+https://api.jikan.moe/v4/
+Rate limited but comprehensive
+Option C: Kitsu API (Free)
+https://kitsu.docs.apiary.io/
+Step 2: Get Video Embeds
+This is where it gets tricky. Options:
+Scrape existing aggregator sites for their embed URLs (what we tried)
+Use consumet API - open-source anime API that handles this
+Use aniwatch-api - another open-source solution
+Step 3: Combine into Your Site
+Recommended Approach: Use Consumet API - it's an open-source project that already handles:
+Multiple anime sources (Gogoanime, Zoro, etc.)
+Episode lists
+Video streaming URLs
+All the hard scraping work
+Want me to:
+Set up Consumet API locally and integrate it with your website?
+Use AniList API for better metadata + Consumet for videos?
+Show you how your current scraper works first for comparison?
 
-## Contributing
 
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing`)
-5. Open Pull Request
 
-## Testing
 
-```bash
-# Run all tests
-pytest tests/
+How it works:
+Get anime info → Returns episode list with IDs
+For each episode → Call /watch/:episodeId → Get M3U8 streaming URL
+The reality:
+Factor	Impact
+~13,410 anime	Many API calls for info
+Episodes per anime	1 to 1000+ episodes each
+Estimated total episodes	Could be 100,000+
+API calls needed	13,410 (info) + 100,000+ (watch)
+Time	Hours to days
+Important limitation:
+Video URLs are temporary - They expire after some time (usually hours). So storing them isn't practical for long-term use.
+Better approach:
+Store only:
+Anime metadata (title, image, description)
+Episode IDs
+Then fetch video URLs on-demand when user clicks play.
+Want me to demonstrate fetching all episodes for one anime (like One Piece with 1155 episodes)?
+okay few questions, the meta deta will also be fetched on demand or we will have to store those?
 
-# Run specific scraper test
-python zoroto_scraper.py --mode quick
-python anime_episode_scraper.py -i test.json --limit 2
+Great question! Here's the breakdown:
+What to STORE (static/rarely changes):
+Data	Why Store
+Anime title, image, description	Doesn't change
+Genres, type, status	Rarely changes
+Episode list (IDs, titles, numbers)	Changes only when new episodes release
+Total episode count	Update periodically
+What to FETCH ON DEMAND (dynamic/expires):
+Data	Why On-Demand
+Video streaming URLs (M3U8)	Expire in hours
+Subtitle URLs	May expire
+Download links	May expire
+Recommended Architecture:
+┌─────────────────────────────────────────────────────┐│                    YOUR DATABASE                     ││  (JSON files / SQLite / MongoDB)                    ││                                                      ││  • Anime metadata (title, image, description)       ││  • Episode list (ID, title, number)                 ││  • Updated weekly via scraper                       │└─────────────────────────────────────────────────────┘                         │                         ▼┌─────────────────────────────────────────────────────┐│                   USER CLICKS PLAY                   ││                                                      ││  → Call Consumet API: /watch/:episodeId             ││  → Get fresh M3U8 URL                               ││  → Play in video player                             │└─────────────────────────────────────────────────────┘
+Benefits:
+Fast browsing (metadata already loaded)
+Always fresh video URLs
+Reduced API calls (only when playing)
+Want me to set this up for your website?
+great understood. Now how will I call this consumenet API via github actions?
 
-# GitHub Actions tests
-git push  # Triggers test workflow
-```
-
-## Troubleshooting
-
-### Common Issues
-
-**No data scraped:**
-- Check internet connection
-- Verify website accessibility
-- Review log files
-
-**Scraping too slow:**
-- Increase workers: `--workers 10`
-- Use parallel version
-- Run on faster server
-
-**GitHub Actions timeout:**
-- Reduce scope with `limit` parameter
-- Split into multiple runs
-- Increase worker timeout
-
-## Documentation
-
-- [Complete Guide](COMPLETE_GUIDE.md) - Full pipeline walkthrough
-- [Data Structure](FINAL_DATA_STRUCTURE.md) - Output schema
-- [Data Organizer](DATA_ORGANIZER_README.md) - Website integration
-- [Parallel Scraper](PARALLEL_SCRAPER_README.md) - Fast scraping
-
-## License
-
-MIT License - See LICENSE file for details
-
-## Disclaimer
-
-This tool is for educational purposes. Please respect website terms of service and robots.txt. Use responsibly with appropriate delays between requests.
-
-## Support
-
-- 📖 Read the [documentation](docs/)
-- 🐛 Report [issues](https://github.com/YOUR_USERNAME/anime-scraper/issues)
-- 💬 Join [discussions](https://github.com/YOUR_USERNAME/anime-scraper/discussions)
-
-## Statistics
-
-Current dataset:
-- Total Anime: 4000+
-- Total Episodes: 50,000+
-- Total Video Sources: 100,000+
-- Last Updated: Auto-updated daily
-
----
-
-**Built with ❤️ for anime fans**
-
+Good question! There are 3 options for using Consumet API in GitHub Actions:
+Option 1: Deploy Consumet API (Recommended)
+Deploy to a free hosting service, then call it from GitHub Actions.
+Service	Free Tier	Setup
+Vercel	Yes	vercel deploy
+Railway	$5 credit/month	One-click deploy
+Render	Yes	Docker deploy
+# In your GitHub Action- name: Scrape anime data  run: |    curl "https://your-consumet-api.vercel.app/anime/animekai/tv" > data.json
+Option 2: Run API Inside GitHub Actions
+Start the Consumet server as part of your workflow:
+1
+jobs:  scrape:    runs-on: ubuntu-latest    steps:      - uses: actions/checkout@v4            - name: Setup Node.js        uses: actions/setup-node@v4        with:          node-version: '18'            - name: Clone & Start Consumet API        run: |          git clone --depth 1 https://github.com/consumet/api.git consumet-api          cd consumet-api && npm install && npm start &          sleep 10  # Wait for server to start            - name: Run Scraper        run: python scraper.py  # Calls localhost:3000
+Option 3: Use Consumet Library Directly (No API needed)
+Use the @consumet/extensions npm package directly:
+const { ANIME } = require('@consumet/extensions');const animekai = new ANIME.AnimeKai();// Searchconst results = await animekai.search('One Piece');// Get infoconst info = await animekai.fetchAnimeInfo('one-piece-dk6r');// Get streaming URLconst sources = await animekai.fetchEpisodeSources(episodeId);
+Which option would you prefer?
+Deploy to Vercel (easiest, always available)
+Run in GitHub Actions (no external dependency)
+Use library directly (most control, no server needed)

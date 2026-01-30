@@ -11,12 +11,14 @@ let currentAnime = null;
 let currentEpisodeIndex = 0;
 let currentPage = 1;
 let currentEpisodePage = 1;
+let currentHeroIndex = 0;
+let heroInterval = null;
 const ITEMS_PER_PAGE = 24;
 const EPISODES_PER_PAGE = 50;
-const MAX_HOME_ANIME = 50; // Only show first 50 on home, but search works on all
+const HERO_COUNT = 5; // Number of featured anime in hero
+const ROW_COUNT = 15; // Number of anime per row
 
 // DOM Elements
-const animeGrid = document.getElementById('animeGrid');
 const searchInput = document.getElementById('searchInput');
 
 // Initialize
@@ -27,8 +29,8 @@ async function init() {
     setupEventListeners();
     setupBrowserNavigation();
     await loadAnimeIndex();
-    console.log('Index loaded, rendering grid with', animeIndex.length, 'anime');
-    renderAnimeGrid();
+    console.log('Index loaded, rendering home with', animeIndex.length, 'anime');
+    renderHome();
 }
 
 // Handle browser back/forward buttons
@@ -58,7 +60,8 @@ function setupBrowserNavigation() {
 // Load anime index
 async function loadAnimeIndex() {
     try {
-        animeGrid.innerHTML = '<div class="loading" data-text="Loading anime..."></div>';
+        const heroSection = document.getElementById('heroSection');
+        heroSection.innerHTML = '<div class="loading" data-text="Loading anime..."></div>';
         
         console.log('Fetching from:', `${DATA_PATH}/anime_index.json`);
         const response = await fetch(`${DATA_PATH}/anime_index.json`);
@@ -75,7 +78,8 @@ async function loadAnimeIndex() {
         
     } catch (error) {
         console.error('Error loading anime index:', error);
-        animeGrid.innerHTML = `<div class="no-results">
+        const heroSection = document.getElementById('heroSection');
+        heroSection.innerHTML = `<div class="no-results" style="padding: 4rem;">
             Failed to load anime data.<br>
             <small style="color: #666;">Error: ${error.message}</small><br>
             <small style="color: #666;">Path: ${DATA_PATH}/anime_index.json</small>
@@ -83,143 +87,252 @@ async function loadAnimeIndex() {
     }
 }
 
-// Setup event listeners
-function setupEventListeners() {
-    // Search - reset to page 1 when searching
-    searchInput.addEventListener('input', debounce(() => {
-        currentPage = 1;
-        renderAnimeGrid();
-    }, 300));
+// Render entire home page
+async function renderHome() {
+    await loadHeroData();
+    renderHero();
+    renderContentRows();
+    startHeroAutoRotate();
 }
 
-// Get filtered anime list
-function getFilteredAnime() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
+// Load full data for hero anime (to get descriptions)
+let heroAnimeData = [];
+async function loadHeroData() {
+    const featuredAnime = animeIndex.slice(0, HERO_COUNT);
+    heroAnimeData = [];
     
-    // If searching, search through ALL anime
-    if (searchTerm) {
-        return animeIndex.filter(anime => 
-            anime.title.toLowerCase().includes(searchTerm)
-        );
-    }
+    // Load all hero data in parallel
+    const promises = featuredAnime.map(async (anime) => {
+        try {
+            // Generate filename using same logic as Python scraper
+            const urlHash = hashString(anime.url);
+            const safeTitle = sanitizeFilename(anime.title);
+            const filename = `${safeTitle}_${urlHash}.json`;
+            
+            console.log('Loading hero anime:', filename);
+            const response = await fetch(`${DATA_PATH}/anime/${filename}`);
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Loaded description for:', anime.title, data.description ? 'YES' : 'NO');
+                return { ...anime, ...data };
+            } else {
+                console.log('Failed to load:', filename, response.status);
+                return anime;
+            }
+        } catch (e) {
+            console.log('Error loading hero data for:', anime.title, e);
+            return anime;
+        }
+    });
     
-    // If not searching, only show first MAX_HOME_ANIME
-    return animeIndex.slice(0, MAX_HOME_ANIME);
+    heroAnimeData = await Promise.all(promises);
+    console.log('Hero data loaded:', heroAnimeData.length, 'items');
 }
 
-// Render anime grid with pagination
-function renderAnimeGrid() {
-    const filteredAnime = getFilteredAnime();
-    const totalPages = Math.ceil(filteredAnime.length / ITEMS_PER_PAGE);
+// Render Hero Section
+function renderHero() {
+    const heroSection = document.getElementById('heroSection');
     
-    // Ensure current page is valid
-    if (currentPage > totalPages) currentPage = totalPages;
-    if (currentPage < 1) currentPage = 1;
-    
-    // Get anime for current page
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    const pageAnime = filteredAnime.slice(startIndex, endIndex);
-    
-    if (filteredAnime.length === 0) {
-        animeGrid.innerHTML = '<div class="no-results">No anime found</div>';
-        document.getElementById('pagination').innerHTML = '';
+    if (heroAnimeData.length === 0) {
+        heroSection.innerHTML = '<div class="no-results">No anime available</div>';
         return;
     }
     
-    // Render anime cards
-    animeGrid.innerHTML = pageAnime.map(anime => `
-        <div class="anime-card" onclick="showAnime('${encodeURIComponent(anime.title)}')">
-            <div class="anime-card-image">
+    const anime = heroAnimeData[currentHeroIndex];
+    
+    heroSection.innerHTML = `
+        <div class="hero-backdrop" style="background-image: url('${anime.cover_image || ''}')"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">${escapeHtml(anime.title)}</h1>
+            <div class="hero-meta">
+                ${anime.status ? `<span class="hero-status">${escapeHtml(anime.status)}</span>` : ''}
+                ${anime.type ? `<span class="hero-meta-item">${escapeHtml(anime.type)}</span>` : ''}
+                <span class="hero-meta-item">${anime.available_episodes || 0} Episodes</span>
+            </div>
+            <p class="hero-description">${escapeHtml(anime.description || 'No description available.')}</p>
+            <div class="hero-buttons">
+                <button class="hero-btn hero-btn-primary" onclick="showAnime('${encodeURIComponent(anime.title)}')">
+                    ▶ Watch Now
+                </button>
+                <button class="hero-btn hero-btn-secondary" onclick="showAnime('${encodeURIComponent(anime.title)}')">
+                    ℹ More Info
+                </button>
+            </div>
+            ${anime.genres && anime.genres.length > 0 ? `
+                <div class="hero-genres">
+                    ${anime.genres.slice(0, 4).map(g => `<span class="hero-genre">${escapeHtml(g)}</span>`).join('')}
+                </div>
+            ` : ''}
+        </div>
+        <button class="hero-arrow hero-arrow-left" onclick="changeHero(-1)">‹</button>
+        <button class="hero-arrow hero-arrow-right" onclick="changeHero(1)">›</button>
+        <div class="hero-nav">
+            ${heroAnimeData.map((_, i) => `
+                <div class="hero-dot ${i === currentHeroIndex ? 'active' : ''}" onclick="goToHero(${i})"></div>
+            `).join('')}
+        </div>
+    `;
+}
+
+// Change hero slide
+function changeHero(direction) {
+    const featuredCount = heroAnimeData.length;
+    if (featuredCount === 0) return;
+    currentHeroIndex = (currentHeroIndex + direction + featuredCount) % featuredCount;
+    renderHero();
+    resetHeroAutoRotate();
+}
+
+// Go to specific hero
+function goToHero(index) {
+    currentHeroIndex = index;
+    renderHero();
+    resetHeroAutoRotate();
+}
+
+// Auto-rotate hero
+function startHeroAutoRotate() {
+    if (heroInterval) clearInterval(heroInterval);
+    heroInterval = setInterval(() => {
+        changeHero(1);
+    }, 8000); // Change every 8 seconds
+}
+
+function resetHeroAutoRotate() {
+    startHeroAutoRotate();
+}
+
+// Render content rows
+function renderContentRows() {
+    // Get anime by status
+    const ongoingAnime = animeIndex.filter(a => a.status && a.status.toLowerCase().includes('ongoing')).slice(0, ROW_COUNT);
+    const completedAnime = animeIndex.filter(a => a.status && a.status.toLowerCase().includes('completed')).slice(0, ROW_COUNT);
+    const latestAnime = animeIndex.slice(0, ROW_COUNT);
+    
+    // Render each row
+    renderRow('latestRow', latestAnime);
+    renderRow('ongoingRow', ongoingAnime);
+    renderRow('completedRow', completedAnime);
+    
+    // Hide sections with no content
+    document.getElementById('ongoingSection').style.display = ongoingAnime.length > 0 ? 'block' : 'none';
+    document.getElementById('completedSection').style.display = completedAnime.length > 0 ? 'block' : 'none';
+}
+
+// Render a single row
+function renderRow(rowId, animeList) {
+    const row = document.getElementById(rowId);
+    if (!row) return;
+    
+    if (animeList.length === 0) {
+        row.innerHTML = '<div class="no-results">No anime found</div>';
+        return;
+    }
+    
+    row.innerHTML = animeList.map(anime => `
+        <div class="row-card" onclick="showAnime('${encodeURIComponent(anime.title)}')">
+            <div class="row-card-image">
                 ${anime.cover_image 
-                    ? `<img src="${escapeHtml(anime.cover_image)}" alt="${escapeHtml(anime.title)}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');" />`
-                    : '🎬'
+                    ? `<img src="${escapeHtml(anime.cover_image)}" alt="${escapeHtml(anime.title)}" loading="lazy" onerror="this.style.display='none';" />`
+                    : '<span style="font-size: 3rem;">🎬</span>'
                 }
             </div>
-            <div class="anime-card-info">
-                <div class="anime-card-title">${escapeHtml(anime.title)}</div>
-                <div class="anime-card-meta">
-                    ${anime.status ? `<span class="anime-card-status">${escapeHtml(anime.status)}</span>` : ''}
-                    <span class="anime-card-episodes">${anime.available_episodes || 0} episodes</span>
-                </div>
+            <div class="row-card-info">
+                <div class="row-card-title">${escapeHtml(anime.title)}</div>
+                <div class="row-card-meta">${anime.available_episodes || 0} eps</div>
             </div>
         </div>
     `).join('');
-    
-    // Render pagination
-    renderPagination(totalPages, filteredAnime.length);
 }
 
-// Render pagination controls
-function renderPagination(totalPages, totalItems) {
-    const pagination = document.getElementById('pagination');
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    const isSearching = searchTerm.length > 0;
+// Scroll row left/right
+function scrollRow(rowId, direction) {
+    const row = document.getElementById(rowId);
+    if (!row) return;
     
-    // Show info even if only 1 page when not searching (to show total available)
-    if (totalPages <= 1 && isSearching) {
-        pagination.innerHTML = '';
+    const scrollAmount = 400;
+    row.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
+}
+
+// Render search results
+function renderSearchResults(searchTerm) {
+    const searchSection = document.getElementById('searchResults');
+    const searchGrid = document.getElementById('searchGrid');
+    const contentSections = document.querySelectorAll('.content-section:not(#searchResults)');
+    const heroSection = document.getElementById('heroSection');
+    
+    if (!searchTerm) {
+        // Hide search, show normal content
+        searchSection.style.display = 'none';
+        contentSections.forEach(s => s.style.display = 'block');
+        heroSection.style.display = 'block';
+        renderContentRows();
         return;
     }
     
-    // Build info text
-    let infoText = `Showing ${((currentPage - 1) * ITEMS_PER_PAGE) + 1}-${Math.min(currentPage * ITEMS_PER_PAGE, totalItems)} of ${totalItems}`;
+    // Show search, hide normal content
+    searchSection.style.display = 'block';
+    contentSections.forEach(s => s.style.display = 'none');
+    heroSection.style.display = 'none';
     
-    // Add hint about more anime available via search when not searching
-    if (!isSearching && animeIndex.length > MAX_HOME_ANIME) {
-        infoText += ` <span style="color: var(--text-secondary); font-size: 0.85em;">(${animeIndex.length} total - use search to find more)</span>`;
+    // Filter anime
+    const results = animeIndex.filter(anime => 
+        anime.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    
+    if (results.length === 0) {
+        searchGrid.innerHTML = '<div class="no-results">No anime found matching your search</div>';
+        return;
     }
     
-    let html = `<div class="pagination-info">${infoText}</div>`;
-    
-    // Only show pagination controls if more than 1 page
-    if (totalPages > 1) {
-        html += '<div class="pagination-controls">';
-        
-        // Previous button
-        html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← Prev</button>`;
-        
-        // Page numbers
-        const maxVisiblePages = 5;
-        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-        
-        if (endPage - startPage < maxVisiblePages - 1) {
-            startPage = Math.max(1, endPage - maxVisiblePages + 1);
-        }
-        
-        if (startPage > 1) {
-            html += `<button class="page-btn" onclick="goToPage(1)">1</button>`;
-            if (startPage > 2) html += `<span class="page-ellipsis">...</span>`;
-        }
-        
-        for (let i = startPage; i <= endPage; i++) {
-            html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
-        }
-        
-        if (endPage < totalPages) {
-            if (endPage < totalPages - 1) html += `<span class="page-ellipsis">...</span>`;
-            html += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
-        }
-        
-        // Next button
-        html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
-        
-        html += '</div>';
-    }
-    
-    pagination.innerHTML = html;
+    searchGrid.innerHTML = results.map(anime => `
+        <div class="row-card" onclick="showAnime('${encodeURIComponent(anime.title)}')">
+            <div class="row-card-image">
+                ${anime.cover_image 
+                    ? `<img src="${escapeHtml(anime.cover_image)}" alt="${escapeHtml(anime.title)}" loading="lazy" onerror="this.style.display='none';" />`
+                    : '<span style="font-size: 3rem;">🎬</span>'
+                }
+            </div>
+            <div class="row-card-info">
+                <div class="row-card-title">${escapeHtml(anime.title)}</div>
+                <div class="row-card-meta">${anime.available_episodes || 0} eps</div>
+            </div>
+        </div>
+    `).join('');
 }
 
-// Go to specific page
-function goToPage(page) {
-    const totalPages = Math.ceil(getFilteredAnime().length / ITEMS_PER_PAGE);
-    if (page < 1 || page > totalPages) return;
+// Setup event listeners
+function setupEventListeners() {
+    // Search functionality - works from any page
+    searchInput.addEventListener('input', debounce(() => {
+        const searchTerm = searchInput.value.trim();
+        
+        // If searching, navigate to home page first
+        const homePage = document.getElementById('homePage');
+        if (!homePage.classList.contains('active')) {
+            stopVideo(); // Stop any playing video
+            showPage('homePage'); // Switch to home page
+            history.pushState({ page: 'home' }, '', '#'); // Update URL
+        }
+        
+        renderSearchResults(searchTerm);
+    }, 300));
     
-    currentPage = page;
-    renderAnimeGrid();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Focus on search box navigates to home if on other pages
+    searchInput.addEventListener('focus', () => {
+        const homePage = document.getElementById('homePage');
+        if (!homePage.classList.contains('active')) {
+            stopVideo();
+            showPage('homePage');
+            renderSearchResults(''); // Show normal home content
+            history.pushState({ page: 'home' }, '', '#'); // Update URL
+        }
+    });
 }
+
 
 // Show anime detail page
 async function showAnime(encodedTitle, pushHistory = true) {
@@ -266,11 +379,7 @@ async function loadAnimeData(animeInfo) {
     
     // Generate filename from URL (same logic as scraper)
     const urlHash = hashString(animeInfo.url);
-    const safeTitle = animeInfo.title
-        .replace(/[<>:"/\\|?*]/g, '')
-        .replace(/\s+/g, '_')
-        .substring(0, 200);
-    
+    const safeTitle = sanitizeFilename(animeInfo.title);
     const filename = `${safeTitle}_${urlHash}.json`;
     console.log('Loading anime file:', filename);
     
@@ -539,6 +648,9 @@ function goToEpisodePage(page) {
     document.querySelector('.episodes-section')?.scrollIntoView({ behavior: 'smooth' });
 }
 
+// Video API endpoint (for fetching streaming URLs on-demand)
+const VIDEO_API_URL = '/api/watch';
+
 // Play episode
 async function playEpisode(encodedTitle, episodeIndex, pushHistory = true) {
     const title = decodeURIComponent(encodedTitle);
@@ -559,7 +671,16 @@ async function playEpisode(encodedTitle, episodeIndex, pushHistory = true) {
     });
     
     const episode = sortedEpisodes[episodeIndex];
-    if (!episode || !episode.video_sources || episode.video_sources.length === 0) {
+    if (!episode) {
+        alert('Episode not found');
+        return;
+    }
+    
+    // Check if episode has video sources (old format) or episode_id (new format)
+    const hasOldFormat = episode.video_sources && episode.video_sources.length > 0;
+    const hasNewFormat = episode.episode_id;
+    
+    if (!hasOldFormat && !hasNewFormat) {
         alert('No video source available');
         return;
     }
@@ -580,23 +701,108 @@ async function playEpisode(encodedTitle, episodeIndex, pushHistory = true) {
     }
     
     const playerContainer = document.getElementById('playerContainer');
-    const videoUrl = episode.video_sources[0];
     
+    // Show loading state
     playerContainer.innerHTML = `
         <button class="back-btn" onclick="goBackToAnime()">← Back to Episodes</button>
         <h2 class="player-title">${escapeHtml(animeData.title)} - Episode ${episode.episode_number}</h2>
         <div class="player-wrapper">
-            <iframe src="${videoUrl}" 
+            <div class="loading" data-text="Loading video..."></div>
+        </div>
+    `;
+    
+    if (hasOldFormat) {
+        // Old format: Use iframe directly
+        const videoUrl = episode.video_sources[0];
+        renderPlayer(playerContainer, animeData, episode, episodeIndex, sortedEpisodes.length, 'iframe', videoUrl);
+    } else {
+        // New format: Fetch streaming URL from API
+        try {
+            const response = await fetch(`${VIDEO_API_URL}?episodeId=${encodeURIComponent(episode.episode_id)}`);
+            if (!response.ok) throw new Error('Failed to fetch video');
+            
+            const data = await response.json();
+            
+            if (data.sources && data.sources.length > 0) {
+                const source = data.sources[0];
+                if (source.isM3U8) {
+                    // HLS stream - use video player with HLS.js
+                    renderPlayer(playerContainer, animeData, episode, episodeIndex, sortedEpisodes.length, 'hls', source.url, data);
+                } else {
+                    // Direct video URL
+                    renderPlayer(playerContainer, animeData, episode, episodeIndex, sortedEpisodes.length, 'video', source.url);
+                }
+            } else {
+                throw new Error('No video sources found');
+            }
+        } catch (error) {
+            console.error('Error loading video:', error);
+            playerContainer.innerHTML = `
+                <button class="back-btn" onclick="goBackToAnime()">← Back to Episodes</button>
+                <h2 class="player-title">${escapeHtml(animeData.title)} - Episode ${episode.episode_number}</h2>
+                <div class="player-wrapper">
+                    <div class="no-results">Failed to load video: ${error.message}</div>
+                </div>
+            `;
+        }
+    }
+}
+
+// Render video player
+function renderPlayer(container, animeData, episode, episodeIndex, totalEpisodes, type, url, extraData = null) {
+    let playerHtml = '';
+    
+    if (type === 'iframe') {
+        playerHtml = `
+            <iframe src="${url}" 
                     allowfullscreen 
                     allow="autoplay; fullscreen"
                     frameborder="0">
             </iframe>
+        `;
+    } else if (type === 'hls') {
+        // HLS video with subtitles
+        const subtitles = extraData?.subtitles?.filter(s => s.kind === 'captions') || [];
+        const subtitleTracks = subtitles.map(s => 
+            `<track kind="captions" src="${s.url}" srclang="${s.lang?.substring(0,2) || 'en'}" label="${s.lang || 'English'}">`
+        ).join('');
+        
+        playerHtml = `
+            <video id="videoPlayer" controls autoplay crossorigin="anonymous">
+                ${subtitleTracks}
+            </video>
+            <script>
+                (function() {
+                    const video = document.getElementById('videoPlayer');
+                    if (Hls.isSupported()) {
+                        const hls = new Hls();
+                        hls.loadSource('${url}');
+                        hls.attachMedia(video);
+                        hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+                    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                        video.src = '${url}';
+                        video.play();
+                    }
+                })();
+            </script>
+        `;
+    } else {
+        playerHtml = `
+            <video src="${url}" controls autoplay></video>
+        `;
+    }
+    
+    container.innerHTML = `
+        <button class="back-btn" onclick="goBackToAnime()">← Back to Episodes</button>
+        <h2 class="player-title">${escapeHtml(animeData.title)} - Episode ${episode.episode_number}</h2>
+        <div class="player-wrapper">
+            ${playerHtml}
         </div>
         <div class="episode-nav">
             <button class="nav-btn" onclick="playPrevious()" ${episodeIndex === 0 ? 'disabled' : ''}>
                 ← Previous Episode
             </button>
-            <button class="nav-btn" onclick="playNext()" ${episodeIndex >= sortedEpisodes.length - 1 ? 'disabled' : ''}>
+            <button class="nav-btn" onclick="playNext()" ${episodeIndex >= totalEpisodes - 1 ? 'disabled' : ''}>
                 Next Episode →
             </button>
         </div>
@@ -642,6 +848,8 @@ function showPage(pageId) {
 // Show home page
 function showHome() {
     stopVideo();
+    searchInput.value = '';
+    renderSearchResults(''); // Reset to show normal content
     showPage('homePage');
     history.pushState({ page: 'home' }, '', '#');
 }
@@ -657,6 +865,16 @@ function goBackToAnime() {
 }
 
 // Utility functions
+
+// Sanitize filename - matches Python scraper's sanitize_filename()
+function sanitizeFilename(title) {
+    return title
+        .replace(/[<>:"/\\|?*]/g, '')  // Remove invalid chars
+        .replace(/\s+/g, '_')           // Replace spaces with underscores
+        .trim()
+        .substring(0, 200);
+}
+
 function escapeHtml(text) {
     if (!text) return '';
     const div = document.createElement('div');

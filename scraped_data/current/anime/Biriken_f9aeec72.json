@@ -1,0 +1,51 @@
+{
+  "title": "Biriken",
+  "animekai_id": "biriken-n6mnp",
+  "url": "https://anikai.to/watch/biriken-n6mnp",
+  "alternative_titles": "Biriken",
+  "description": "",
+  "cover_image": "https://static.anikai.to/06/i/4/b0/697c9a1dab82f.jpg",
+  "genres": [
+    "Country:  Japan   Genres:  Comedy   Premiered: Summer 1988  Date aired: Jul 10, 1988 to Apr 02, 1989  Episodes: 32 Duration: 13 min",
+    "Genres:  Comedy"
+  ],
+  "status": "Ongoing",
+  "type": "TV",
+  "studio": "",
+  "duration": "",
+  "season": "Summer 1988",
+  "released": "",
+  "producers": [],
+  "rating": null,
+  "total_episodes": 4,
+  "available_episodes": 4,
+  "sub_episodes": 4,
+  "dub_episodes": 0,
+  "episodes": [
+    {
+      "episode_number": "1",
+      "episode_id": "biriken-n6mnp$ep=1$token=Lte79eA",
+      "episode_title": "Episode 1",
+      "has_videos": true
+    },
+    {
+      "episode_number": "2",
+      "episode_id": "biriken-n6mnp$ep=2$token=ctTut_I",
+      "episode_title": "Episode 2",
+      "has_videos": true
+    },
+    {
+      "episode_number": "3",
+      "episode_id": "biriken-n6mnp$ep=3$token=e4W7sqA",
+      "episode_title": "Episode 3",
+      "has_videos": true
+    },
+    {
+      "episode_number": "4",
+      "episode_id": "biriken-n6mnp$ep=4$token=JobkufE",
+      "episode_title": "Episode 4",
+      "has_videos": true
+    }
+  ],
+  "scraped_at": "2026-01-30T15:23:04.010Z"
+}

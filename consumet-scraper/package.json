@@ -1,0 +1,15 @@
+{
+  "name": "inanime-consumet-scraper",
+  "version": "1.0.0",
+  "description": "Anime scraper using @consumet/extensions with AnimeKai provider",
+  "main": "scraper.js",
+  "type": "module",
+  "scripts": {
+    "scrape": "node scraper.js",
+    "scrape:quick": "node scraper.js --limit 50",
+    "scrape:full": "node scraper.js --full"
+  },
+  "dependencies": {
+    "@consumet/extensions": "^1.7.0"
+  }
+}

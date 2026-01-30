@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InAnime - Indian Anime Streaming</title>
+    <title>InAnime</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -18,19 +19,63 @@
         </div>
     </nav>
 
-    <main class="container">
-        <!-- Home Page -->
-        <div id="homePage" class="page active">
-            <h1>All Anime</h1>
-            <div id="animeGrid" class="anime-grid">
-                <!-- Anime cards will be loaded here -->
-            </div>
-            <div id="pagination" class="pagination">
-                <!-- Pagination will be loaded here -->
-            </div>
-        </div>
+    <!-- Home Page -->
+    <div id="homePage" class="page active">
+        <!-- Hero Banner Section -->
+        <section id="heroSection" class="hero-section">
+            <!-- Hero content will be loaded here -->
+        </section>
+        
+        <!-- Content Rows -->
+        <main class="content-container">
+            <!-- Search Results (hidden by default) -->
+            <section id="searchResults" class="content-section" style="display: none;">
+                <h2 class="section-title">Search Results</h2>
+                <div id="searchGrid" class="anime-row">
+                    <!-- Search results will be loaded here -->
+                </div>
+            </section>
+            
+            <!-- Latest Anime -->
+            <section id="latestSection" class="content-section">
+                <h2 class="section-title">Latest Anime</h2>
+                <div class="row-wrapper">
+                    <button class="scroll-btn scroll-left" onclick="scrollRow('latestRow', -1)">‹</button>
+                    <div id="latestRow" class="anime-row">
+                        <!-- Latest anime will be loaded here -->
+                    </div>
+                    <button class="scroll-btn scroll-right" onclick="scrollRow('latestRow', 1)">›</button>
+                </div>
+            </section>
+            
+            <!-- Ongoing Anime -->
+            <section id="ongoingSection" class="content-section">
+                <h2 class="section-title">Ongoing Anime</h2>
+                <div class="row-wrapper">
+                    <button class="scroll-btn scroll-left" onclick="scrollRow('ongoingRow', -1)">‹</button>
+                    <div id="ongoingRow" class="anime-row">
+                        <!-- Ongoing anime will be loaded here -->
+                    </div>
+                    <button class="scroll-btn scroll-right" onclick="scrollRow('ongoingRow', 1)">›</button>
+                </div>
+            </section>
+            
+            <!-- Completed Anime -->
+            <section id="completedSection" class="content-section">
+                <h2 class="section-title">Completed Anime</h2>
+                <div class="row-wrapper">
+                    <button class="scroll-btn scroll-left" onclick="scrollRow('completedRow', -1)">‹</button>
+                    <div id="completedRow" class="anime-row">
+                        <!-- Completed anime will be loaded here -->
+                    </div>
+                    <button class="scroll-btn scroll-right" onclick="scrollRow('completedRow', 1)">›</button>
+                </div>
+            </section>
+        </main>
+    </div>
 
-        <!-- Anime Detail Page -->
+    <!-- Anime Detail Page -->
+    <main class="container">
         <div id="animePage" class="page">
             <button class="back-btn" onclick="showHome()">← Back to List</button>
             <div id="animeDetail">
@@ -50,6 +95,8 @@
         <p>InAnime - Your Indian Anime Streaming Platform</p>
     </footer>
 
+    <!-- HLS.js for streaming video playback -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="./app.js"></script>
 </body>
 </html>

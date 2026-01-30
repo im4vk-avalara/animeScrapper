@@ -42,7 +42,7 @@ def main():
             
             if self.path == '/' or self.path == '/index.html':
                 self.path = '/website/index.html'
-            elif self.path in ['/styles.css', '/app.js']:
+            elif self.path in ['/styles.css', '/app.js', '/logo.png', '/favicon.ico']:
                 self.path = '/website' + self.path
             # scraped_data paths stay as-is (already correct)
             
