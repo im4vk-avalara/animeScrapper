@@ -1,7 +1,9 @@
 {
   "title": "A Certain Magical Index II",
   "url": "https://zoroto.com.in/anime/a-certain-magical-index-ii/",
+  "alternative_titles": "Toaru Majutsu no Index II",
   "description": "As tensions between the world of magic and Academy City continues to rise, Touma Kamijou and his hand of negation must face off against both esper and magician in order to protect the lives of those around him. Of course, he is not alone in his fight; whether by his side or out of sight, allies and enemies both old and new will enter the fray to help him. Toaru Majutsu no Index II continues the story of action and comedy, as the scale of Touma and his allies’ battle grows ever larger. A conflict is slowly brewing on the horizon, and magic and science will cross paths once again in the war to come. [Written by MAL Rewrite]",
+  "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/0b83281717238275d76005c9de2e4ebc.jpg",
   "genres": [
     "Action",
     "Magic",
@@ -9,6 +11,20 @@
     "Super Power"
   ],
   "status": "Completed",
+  "type": "TV",
+  "studio": "J.C. Staff",
+  "duration": "23m",
+  "season": "Fall 2010",
+  "released": "2010",
+  "producers": [
+    "ASCII Media Works",
+    "AT-X",
+    "Delfi Sound",
+    "Funimation",
+    "Geneon Universal Entertainment",
+    "J.C.Staff",
+    "Square Enix"
+  ],
   "rating": null,
   "total_episodes": 24,
   "available_episodes": 24,
@@ -230,5 +246,5 @@
       "has_videos": true
     }
   ],
-  "scraped_at": "2026-01-30 07:29:30"
+  "scraped_at": "2026-01-30 07:34:32"
 }

@@ -1,12 +1,20 @@
 {
   "title": "Popular Series",
   "url": "https://zoroto.com.in/anime/?status=&type=&sub=&order=popular",
+  "alternative_titles": null,
   "description": null,
+  "cover_image": "https://zoroto.com.in/wp-content/uploads/2026/01/how-dare-you-season-2-2026.jpg",
   "genres": [],
   "status": null,
+  "type": null,
+  "studio": null,
+  "duration": null,
+  "season": null,
+  "released": null,
+  "producers": [],
   "rating": null,
   "total_episodes": 0,
   "available_episodes": 0,
   "episodes": [],
-  "scraped_at": "2026-01-30 07:29:20"
+  "scraped_at": "2026-01-30 07:34:23"
 }

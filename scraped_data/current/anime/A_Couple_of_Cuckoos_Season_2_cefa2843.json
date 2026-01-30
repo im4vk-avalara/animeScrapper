@@ -1,7 +1,9 @@
 {
   "title": "A Couple of Cuckoos Season 2",
   "url": "https://zoroto.com.in/anime/a-couple-of-cuckoos-season-2/",
+  "alternative_titles": "Kakkou no Iinazuke Season 2",
   "description": "The second season of Kakkou no Iinazuke. Umino Nagi and Amano Erika were born on the same day and swapped at birth. Nagi was raised as the son of a diner owner, and Erika the daughter of a hotel tycoon. Their parents encourage them to become engaged, and they begin life together. Soon though, infatuations arise as Nagi becomes stuck in a love quadrangle. Life and love are embroiled in epic turmoil as fate is set in motion once again!",
+  "cover_image": "https://zoroto.com.in/wp-content/uploads/2025/08/filters_quality95formatwebp.webp",
   "genres": [
     "Comedy",
     "Harem",
@@ -9,6 +11,16 @@
     "Shounen"
   ],
   "status": "Ongoing",
+  "type": "TV",
+  "studio": "Okuruto Noboru",
+  "duration": "24m",
+  "season": "Summer 2025",
+  "released": "2025",
+  "producers": [
+    "Bit grooove promotion",
+    "Imagine",
+    "Kadokawa"
+  ],
   "rating": null,
   "total_episodes": 12,
   "available_episodes": 12,
@@ -122,5 +134,5 @@
       "has_videos": true
     }
   ],
-  "scraped_at": "2026-01-30 07:29:28"
+  "scraped_at": "2026-01-30 07:34:32"
 }
