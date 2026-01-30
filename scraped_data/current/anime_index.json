@@ -1,7 +1,7 @@
 {
-  "total_anime": 10,
-  "total_episodes": 104,
-  "total_video_sources": 104,
+  "total_anime": 11,
+  "total_episodes": 117,
+  "total_video_sources": 117,
   "anime_list": [
     {
       "title": "100 Meters (2025)",
@@ -112,6 +112,18 @@
       ],
       "total_episodes": 4,
       "available_episodes": 4
+    },
+    {
+      "title": "A Mangaka’s Weirdly Wonderful Workplace (2025)",
+      "url": "https://zoroto.com.in/anime/a-mangakas-weirdly-wonderful-workplace-2025/",
+      "cover_image": "https://zoroto.com.in/wp-content/uploads/2025/10/a-mangakas-weirdly-wonderful-workplace-2025.jpg",
+      "status": "Completed",
+      "type": "TV",
+      "genres": [
+        "Comedy"
+      ],
+      "total_episodes": 13,
+      "available_episodes": 13
     },
     {
       "title": "Popular Series",
