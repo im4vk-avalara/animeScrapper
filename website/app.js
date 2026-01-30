@@ -14,8 +14,6 @@ let currentFilter = 'all';
 // DOM Elements
 const animeGrid = document.getElementById('animeGrid');
 const searchInput = document.getElementById('searchInput');
-const totalAnimeSpan = document.getElementById('totalAnime');
-const lastUpdatedSpan = document.getElementById('lastUpdated');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', init);
@@ -70,20 +68,6 @@ async function loadAnimeIndex() {
         
         animeIndex = data.anime_list || [];
         console.log('Anime count:', animeIndex.length);
-        
-        // Update stats
-        totalAnimeSpan.textContent = data.total_anime || animeIndex.length;
-        
-        // Load statistics for last updated
-        try {
-            const statsResponse = await fetch(`${DATA_PATH}/statistics.json`);
-            const stats = await statsResponse.json();
-            if (stats.scraped_at) {
-                lastUpdatedSpan.textContent = stats.scraped_at;
-            }
-        } catch (e) {
-            console.log('Statistics not available');
-        }
         
     } catch (error) {
         console.error('Error loading anime index:', error);
