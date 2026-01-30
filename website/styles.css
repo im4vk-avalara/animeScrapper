@@ -31,6 +31,12 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main.container {
+    flex: 1;
 }
 
 /* Navbar */
@@ -497,7 +503,7 @@ footer {
     padding: 2rem;
     color: var(--text-secondary);
     font-size: 0.85rem;
-    margin-top: 2rem;
+    margin-top: auto;
     background-color: var(--bg-secondary);
     border-top: 2px solid transparent;
     background-image: linear-gradient(var(--bg-secondary), var(--bg-secondary)), 
