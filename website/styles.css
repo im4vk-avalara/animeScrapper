@@ -37,6 +37,8 @@ body {
 
 main.container {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -112,14 +114,76 @@ main.container {
 }
 
 .page.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    min-height: 100%;
 }
+
+/* Home page - push pagination to bottom */
+#homePage.active {
+    flex: 1;
+}
+
+#homePage > h1 {
+    flex-shrink: 0;
+}
+
+#homePage .anime-grid {
+    flex-shrink: 0;
+}
+
+#homePage .pagination,
+#animePage .pagination {
+    margin-top: auto;
+    padding-top: 2rem;
+}
+
+/* Anime page layout */
+#animePage.active {
+    flex: 1;
+}
+
+#animePage .back-btn {
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+#animePage #animeDetail {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#animePage .anime-header {
+    flex-shrink: 0;
+}
+
+#animePage .episodes-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#animePage .episodes-title {
+    flex-shrink: 0;
+}
+
+#animePage .episodes-grid {
+    flex-shrink: 0;
+}
+
+#animePage #episodePagination {
+    margin-top: auto;
+    padding-top: 2rem;
+}
+
 
 
 /* Pagination */
 .pagination {
     margin-top: 2rem;
+    padding: 1.5rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
