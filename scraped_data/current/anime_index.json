@@ -1,7 +1,7 @@
 {
-  "total_anime": 11,
-  "total_episodes": 117,
-  "total_video_sources": 117,
+  "total_anime": 30,
+  "total_episodes": 422,
+  "total_video_sources": 422,
   "anime_list": [
     {
       "title": "100 Meters (2025)",
@@ -124,6 +124,281 @@
       ],
       "total_episodes": 13,
       "available_episodes": 13
+    },
+    {
+      "title": "A Misanthrope Teaches a Class for Demi-Humans (2026)",
+      "url": "https://zoroto.com.in/anime/a-misanthrope-teaches-a-class-for-demi-humans-2026/",
+      "cover_image": "https://zoroto.com.in/wp-content/uploads/2026/01/a-misanthrope-teaches-a-class-for-demi-humans-2026.jpg",
+      "status": "Upcoming",
+      "type": "TV",
+      "genres": [
+        "Drama",
+        "Supernatural"
+      ],
+      "total_episodes": 3,
+      "available_episodes": 3
+    },
+    {
+      "title": "A Record of Mortal’s Journey to Immortality Season 3",
+      "url": "https://zoroto.com.in/anime/a-record-of-mortals-journey-to-immortality-season-3/",
+      "cover_image": "https://zoroto.com.in/wp-content/uploads/2025/08/c113cfdf822840adf77c553d59794d85.jpg",
+      "status": "Ongoing",
+      "type": "ONA",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy",
+        "Historical",
+        "Martial Arts"
+      ],
+      "total_episodes": 104,
+      "available_episodes": 104
+    },
+    {
+      "title": "A Star Brighter Than the Sun (2025)",
+      "url": "https://zoroto.com.in/anime/a-star-brighter-than-the-sun-2025/",
+      "cover_image": "https://zoroto.com.in/wp-content/uploads/2025/10/a-star-brighter-than-the-sun-2025.jpg",
+      "status": "Completed",
+      "type": "TV",
+      "genres": [
+        "Romance"
+      ],
+      "total_episodes": 12,
+      "available_episodes": 12
+    },
+    {
+      "title": "A Whisker Away",
+      "url": "https://zoroto.com.in/anime/a-whisker-away/",
+      "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/30d734a5c62ba302c1bf70733408f5e2.jpg",
+      "status": "Completed",
+      "type": "Movie",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "School",
+        "Supernatural"
+      ],
+      "total_episodes": 1,
+      "available_episodes": 1
+    },
+    {
+      "title": "A Wild Last Boss Appeared! (2025)",
+      "url": "https://zoroto.com.in/anime/a-wild-last-boss-appeared-2025/",
+      "cover_image": "https://zoroto.com.in/wp-content/uploads/2025/09/a-wild-last-boss-appeared-2025.jpg",
+      "status": "Completed",
+      "type": "TV",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy"
+      ],
+      "total_episodes": 12,
+      "available_episodes": 12
+    },
+    {
+      "title": "Actually, I am…",
+      "url": "https://zoroto.com.in/anime/actually-i-am/",
+      "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b420c4a6f2d747aaa2a073c93e770c4b.jpg",
+      "status": "Completed",
+      "type": "TV",
+      "genres": [
+        "Comedy",
+        "Fantasy",
+        "Romance",
+        "School",
+        "Shounen",
+        "Supernatural",
+        "Vampire"
+      ],
+      "total_episodes": 13,
+      "available_episodes": 13
+    },
+    {
+      "title": "After the Rain",
+      "url": "https://zoroto.com.in/anime/after-the-rain/",
+      "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/66a922222c3a7778c0038cec52f25b8c.jpg",
+      "status": "Completed",
+      "type": "TV",
+      "genres": [
+        "Drama",
+        "Romance",
+        "Seinen",
+        "Slice of Life"
+      ],
+      "total_episodes": 12,
+      "available_episodes": 12
+    },
+    {
+      "title": "Aharen Is Indecipherable 2nd Season",
+      "url": "https://zoroto.com.in/anime/aharen-is-indecipherable-2nd-season/",
+      "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/7a576978d20d9fe3084647ddb5bdc275.jpg",
+      "status": "Completed",
+      "type": "TV",
+      "genres": [
+        "Comedy",
+        "Romance",
+        "School",
+        "Shounen"
+      ],
+      "total_episodes": 12,
+      "available_episodes": 12
+    },
+    {
+      "title": "Aishen Qiaokeli-ing…",
+      "url": "https://zoroto.com.in/anime/aishen-qiaokeli-ing/",
+      "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/ec0961f2f85bb70ae00a1a00a0e212be.jpg",
+      "status": "Completed",
+      "type": "ONA",
+      "genres": [
+        "Comedy",
+        "Harem",
+        "Romance",
+        "School"
+      ],
+      "total_episodes": 15,
+      "available_episodes": 15
+    },
+    {
+      "title": "AKIRA",
+      "url": "https://zoroto.com.in/anime/akira/",
+      "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/3b4628ccc255bd2e628f48ccce80848f.jpg",
+      "status": "Completed",
+      "type": "Movie",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Horror",
+        "Military",
+        "Sci-Fi",
+        "Seinen",
+        "Supernatural"
+      ],
+      "total_episodes": 1,
+      "available_episodes": 1
+    },
+    {
+      "title": "Alderamin on the Sky",
+      "url": "https://zoroto.com.in/anime/alderamin-on-the-sky/",
+      "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/4d6d6b68a51a58775c4e048985bc43e1.jpg",
+      "status": "Completed",
+      "type": "TV",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy",
+        "Military"
+      ],
+      "total_episodes": 13,
+      "available_episodes": 13
+    },
+    {
+      "title": "Alice in Borderland (2015)",
+      "url": "https://zoroto.com.in/anime/alice-in-borderland-2015/",
+      "cover_image": "https://zoroto.com.in/wp-content/uploads/2025/09/alice-in-borderland-2015.jpg",
+      "status": "Completed",
+      "type": "OVA",
+      "genres": [
+        "Action",
+        "Suspense"
+      ],
+      "total_episodes": 3,
+      "available_episodes": 3
+    },
+    {
+      "title": "All Out!!",
+      "url": "https://zoroto.com.in/anime/all-out/",
+      "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/c302c65c62e68ce9b636d3f2109e7a81.jpg",
+      "status": "Completed",
+      "type": "TV",
+      "genres": [
+        "School",
+        "Seinen",
+        "Sports"
+      ],
+      "total_episodes": 25,
+      "available_episodes": 25
+    },
+    {
+      "title": "Alma-chan Wants to Be a Family! (2025)",
+      "url": "https://zoroto.com.in/anime/alma-chan-wants-to-be-a-family-2025/",
+      "cover_image": "https://zoroto.com.in/wp-content/uploads/2025/10/alma-chan-wants-to-be-a-family-2025.jpg",
+      "status": "Ongoing",
+      "type": "TV",
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "total_episodes": 11,
+      "available_episodes": 11
+    },
+    {
+      "title": "Amagami SS",
+      "url": "https://zoroto.com.in/anime/amagami-ss/",
+      "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/3dcebd03133866920de933e5dc50aa61.jpg",
+      "status": "Completed",
+      "type": "TV",
+      "genres": [
+        "Comedy",
+        "Romance",
+        "School",
+        "Slice of Life"
+      ],
+      "total_episodes": 25,
+      "available_episodes": 25
+    },
+    {
+      "title": "An Adventurer’s Daily Grind at Age 29 (2026)",
+      "url": "https://zoroto.com.in/anime/an-adventurers-daily-grind-at-age-29-2026/",
+      "cover_image": "https://zoroto.com.in/wp-content/uploads/2026/01/an-adventurers-daily-grind-at-age-29-2026.jpg",
+      "status": "Ongoing",
+      "type": "TV",
+      "genres": [
+        "Adventure",
+        "Fantasy"
+      ],
+      "total_episodes": 4,
+      "available_episodes": 4
+    },
+    {
+      "title": "Anne Shirley (2025)",
+      "url": "https://zoroto.com.in/anime/anne-shirley-2025/",
+      "cover_image": "https://zoroto.com.in/wp-content/uploads/2025/08/anne-shirley-2025.jpg",
+      "status": "Ongoing",
+      "type": "TV",
+      "genres": [
+        "Drama"
+      ],
+      "total_episodes": 24,
+      "available_episodes": 24
+    },
+    {
+      "title": "anohana: The Flower We Saw That Day",
+      "url": "https://zoroto.com.in/anime/anohana-the-flower-we-saw-that-day/",
+      "cover_image": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/06cae051e5171874535ce48ed89edf41.jpg",
+      "status": "Completed",
+      "type": "TV",
+      "genres": [
+        "Drama",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "total_episodes": 11,
+      "available_episodes": 11
+    },
+    {
+      "title": "Anyway, I’m Falling in Love with You. Season 2 (2026)",
+      "url": "https://zoroto.com.in/anime/anyway-im-falling-in-love-with-you-season-2-2026/",
+      "cover_image": "https://zoroto.com.in/wp-content/uploads/2026/01/anyway-im-falling-in-love-with-you-season-2-2026.jpg",
+      "status": "Ongoing",
+      "type": "TV",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "total_episodes": 4,
+      "available_episodes": 4
     },
     {
       "title": "Popular Series",
