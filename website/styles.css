@@ -37,6 +37,7 @@ body {
 
 main.container {
     flex: 1;
+    width: 100%;
 }
 
 /* Navbar */
@@ -107,10 +108,12 @@ main.container {
 /* Pages */
 .page {
     display: none;
+    width: 100%;
 }
 
 .page.active {
     display: block;
+    width: 100%;
 }
 
 
@@ -475,18 +478,19 @@ main.container {
 }
 
 /* Player Page */
-#playerContainer {
-    max-width: 1400px;
+#playerPage {
     width: 100%;
-    margin: 0 auto;
-    padding: 0 1rem;
+}
+
+#playerContainer {
+    width: 100%;
+    display: block;
 }
 
 .player-title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
-    text-align: center;
 }
 
 .player-wrapper {
@@ -513,6 +517,7 @@ main.container {
 .episode-nav {
     display: flex;
     justify-content: space-between;
+    width: 100%;
     margin-top: 1rem;
 }
 
