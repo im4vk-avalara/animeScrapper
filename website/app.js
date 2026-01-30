@@ -560,6 +560,7 @@ async function playEpisode(encodedTitle, episodeIndex, pushHistory = true) {
     const videoUrl = episode.video_sources[0];
     
     playerContainer.innerHTML = `
+        <button class="back-btn" onclick="goBackToAnime()">← Back to Episodes</button>
         <h2 class="player-title">${escapeHtml(animeData.title)} - Episode ${episode.episode_number}</h2>
         <div class="player-wrapper">
             <iframe src="${videoUrl}" 

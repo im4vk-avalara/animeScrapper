@@ -113,11 +113,6 @@ main.container {
     display: block;
 }
 
-/* Consistent page headers for animePage and playerPage */
-#animePage,
-#playerPage {
-    padding-top: 0;
-}
 
 /* Pagination */
 .pagination {
@@ -294,7 +289,7 @@ main.container {
     gap: 0.3rem;
 }
 
-/* Back Button - Fixed position at top */
+/* Back Button - Consistent across all pages */
 .back-btn {
     display: inline-flex;
     align-items: center;
@@ -481,14 +476,17 @@ main.container {
 
 /* Player Page */
 #playerContainer {
-    max-width: 1200px;
+    max-width: 1400px;
+    width: 100%;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .player-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
+    text-align: center;
 }
 
 .player-wrapper {
