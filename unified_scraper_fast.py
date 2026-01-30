@@ -189,9 +189,17 @@ class SmartHTMLExtractor:
         
         result = {
             'title': None,
+            'alternative_titles': None,
             'description': None,
+            'cover_image': None,
             'genres': [],
             'status': None,
+            'type': None,
+            'studio': None,
+            'duration': None,
+            'season': None,
+            'released': None,
+            'producers': [],
             'rating': None,
             'episodes': []
         }
@@ -203,19 +211,101 @@ class SmartHTMLExtractor:
                 result['title'] = elem.get_text(strip=True)
                 break
         
-        # Extract description
-        for selector in ['.entry-content', '[itemprop="description"]', '.synopsis', '.description']:
-            elem = soup.select_one(selector)
-            if elem:
-                text = elem.get_text(strip=True)[:500]
-                result['description'] = text
-                break
+        # Extract alternative titles
+        alter_elem = soup.find('span', class_='alter')
+        if alter_elem:
+            result['alternative_titles'] = alter_elem.get_text(strip=True)
         
-        # Extract genres
-        for link in soup.find_all('a', href=re.compile(r'/genre/')):
-            genre = link.get_text(strip=True)
-            if genre and genre not in result['genres']:
-                result['genres'].append(genre)
+        # Extract cover image from JSON-LD schema or meta tags
+        for script in soup.find_all('script', type='application/ld+json'):
+            try:
+                import json
+                data = json.loads(script.string or '{}')
+                if isinstance(data, dict) and '@graph' in data:
+                    for item in data['@graph']:
+                        if item.get('@type') == 'ImageObject' and item.get('url'):
+                            result['cover_image'] = item['url']
+                            break
+                        if item.get('thumbnailUrl'):
+                            result['cover_image'] = item['thumbnailUrl']
+            except:
+                pass
+        
+        # Fallback: og:image meta tag
+        if not result['cover_image']:
+            og_image = soup.find('meta', property='og:image')
+            if og_image and og_image.get('content'):
+                result['cover_image'] = og_image['content']
+        
+        # Extract description from the mindesc div first
+        mindesc = soup.find('div', class_='mindesc')
+        if mindesc:
+            # Get first text that's not boilerplate
+            text = mindesc.get_text(strip=True)
+            if text and 'Zoro To' not in text:
+                result['description'] = text[:1000]
+        
+        # Fallback: Try to get description from entry-content or meta
+        if not result['description']:
+            meta_desc = soup.find('meta', attrs={'name': 'description'})
+            if meta_desc and meta_desc.get('content'):
+                text = meta_desc['content']
+                # Remove boilerplate text
+                if 'NO BUFFERING' not in text:
+                    result['description'] = text[:1000]
+        
+        # Extract metadata from .spe spans
+        spe_div = soup.find('div', class_='spe')
+        if spe_div:
+            for span in spe_div.find_all('span'):
+                text = span.get_text(strip=True)
+                
+                if 'Status:' in text:
+                    result['status'] = text.replace('Status:', '').strip()
+                
+                elif 'Type:' in text:
+                    result['type'] = text.replace('Type:', '').strip()
+                
+                elif 'Studio:' in text:
+                    studio_link = span.find('a')
+                    if studio_link:
+                        result['studio'] = studio_link.get_text(strip=True)
+                    else:
+                        result['studio'] = text.replace('Studio:', '').strip()
+                
+                elif 'Duration:' in text:
+                    result['duration'] = text.replace('Duration:', '').strip()
+                
+                elif 'Season:' in text:
+                    season_link = span.find('a')
+                    if season_link:
+                        result['season'] = season_link.get_text(strip=True)
+                    else:
+                        result['season'] = text.replace('Season:', '').strip()
+                
+                elif 'Released:' in text:
+                    result['released'] = text.replace('Released:', '').strip()
+                
+                elif 'Producers:' in text:
+                    for link in span.find_all('a'):
+                        producer = link.get_text(strip=True)
+                        if producer and producer not in result['producers']:
+                            result['producers'].append(producer)
+        
+        # Extract genres from genxed div
+        genxed = soup.find('div', class_='genxed')
+        if genxed:
+            for link in genxed.find_all('a'):
+                genre = link.get_text(strip=True)
+                if genre and genre not in result['genres']:
+                    result['genres'].append(genre)
+        
+        # Fallback: Extract genres from any genre links
+        if not result['genres']:
+            for link in soup.find_all('a', href=re.compile(r'/genre/')):
+                genre = link.get_text(strip=True)
+                if genre and genre not in result['genres']:
+                    result['genres'].append(genre)
         
         # Extract episodes - Pattern 1: Episode list container
         eplister = soup.find('div', class_='eplister')
@@ -799,6 +889,10 @@ class UnifiedFastScraper:
                 all_anime.append({
                     'title': data.get('title'),
                     'url': data.get('url'),
+                    'cover_image': data.get('cover_image'),
+                    'status': data.get('status'),
+                    'type': data.get('type'),
+                    'genres': data.get('genres', []),
                     'total_episodes': data.get('total_episodes', 0),
                     'available_episodes': data.get('available_episodes', 0)
                 })

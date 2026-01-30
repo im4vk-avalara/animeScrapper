@@ -133,6 +133,22 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 3rem;
+    overflow: hidden;
+}
+
+.anime-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.anime-card:hover .anime-card-image img {
+    transform: scale(1.05);
+}
+
+.anime-card-image.no-image {
+    font-size: 3rem;
 }
 
 .anime-card-info {
@@ -157,6 +173,25 @@ body {
 .anime-card-episodes {
     color: var(--accent);
     font-weight: 500;
+}
+
+.anime-card-status {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: rgba(229, 57, 53, 0.2);
+    color: var(--accent);
+    margin-right: 0.5rem;
+}
+
+.anime-card-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.3rem;
 }
 
 /* Back Button */
@@ -191,6 +226,21 @@ body {
     justify-content: center;
     font-size: 5rem;
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.anime-poster .poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.anime-poster .poster-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .anime-info {
@@ -199,6 +249,13 @@ body {
 
 .anime-title {
     font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.anime-alt-titles {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
     margin-bottom: 1rem;
 }
 
@@ -206,6 +263,26 @@ body {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
     line-height: 1.8;
+}
+
+.anime-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.meta-item {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.meta-item strong {
+    color: var(--text-primary);
+    margin-right: 0.3rem;
 }
 
 .anime-stats {

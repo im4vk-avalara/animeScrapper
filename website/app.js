@@ -136,10 +136,16 @@ function renderAnimeGrid() {
     
     animeGrid.innerHTML = filteredAnime.map(anime => `
         <div class="anime-card" onclick="showAnime('${encodeURIComponent(anime.title)}')">
-            <div class="anime-card-image">🎬</div>
+            <div class="anime-card-image">
+                ${anime.cover_image 
+                    ? `<img src="${escapeHtml(anime.cover_image)}" alt="${escapeHtml(anime.title)}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');" />`
+                    : '🎬'
+                }
+            </div>
             <div class="anime-card-info">
                 <div class="anime-card-title">${escapeHtml(anime.title)}</div>
                 <div class="anime-card-meta">
+                    ${anime.status ? `<span class="anime-card-status">${escapeHtml(anime.status)}</span>` : ''}
                     <span class="anime-card-episodes">${anime.available_episodes || 0} episodes</span>
                 </div>
             </div>
@@ -338,12 +344,43 @@ function renderAnimeDetail(anime) {
         return numA - numB;
     });
     
+    // Build metadata items
+    const metaItems = [];
+    if (anime.status) metaItems.push(`<span class="meta-item"><strong>Status:</strong> ${escapeHtml(anime.status)}</span>`);
+    if (anime.type) metaItems.push(`<span class="meta-item"><strong>Type:</strong> ${escapeHtml(anime.type)}</span>`);
+    if (anime.studio) metaItems.push(`<span class="meta-item"><strong>Studio:</strong> ${escapeHtml(anime.studio)}</span>`);
+    if (anime.duration) metaItems.push(`<span class="meta-item"><strong>Duration:</strong> ${escapeHtml(anime.duration)}</span>`);
+    if (anime.season) metaItems.push(`<span class="meta-item"><strong>Season:</strong> ${escapeHtml(anime.season)}</span>`);
+    if (anime.released) metaItems.push(`<span class="meta-item"><strong>Released:</strong> ${escapeHtml(anime.released)}</span>`);
+    
+    // Build producers list
+    const producers = anime.producers && anime.producers.length > 0
+        ? `<span class="meta-item"><strong>Producers:</strong> ${anime.producers.map(p => escapeHtml(p)).join(', ')}</span>`
+        : '';
+    
+    // Cover image or placeholder
+    const coverImage = anime.cover_image 
+        ? `<img src="${escapeHtml(anime.cover_image)}" alt="${escapeHtml(anime.title)}" class="poster-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" /><div class="poster-placeholder" style="display:none;">🎬</div>`
+        : '<div class="poster-placeholder">🎬</div>';
+    
+    // Alternative titles
+    const altTitles = anime.alternative_titles 
+        ? `<p class="anime-alt-titles">${escapeHtml(anime.alternative_titles)}</p>` 
+        : '';
+    
     animeDetail.innerHTML = `
         <div class="anime-header">
-            <div class="anime-poster">🎬</div>
+            <div class="anime-poster">${coverImage}</div>
             <div class="anime-info">
                 <h1 class="anime-title">${escapeHtml(anime.title)}</h1>
+                ${altTitles}
                 <p class="anime-description">${escapeHtml(anime.description || 'No description available.')}</p>
+                
+                <div class="anime-meta">
+                    ${metaItems.join('')}
+                    ${producers}
+                </div>
+                
                 <div class="anime-stats">
                     <div class="stat">
                         <div class="stat-value">${anime.total_episodes || 0}</div>
