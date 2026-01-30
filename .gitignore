@@ -1,0 +1,86 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+*.log.*
+
+# Data directories (large files - old scrapers)
+anime_data/
+video_data/
+website_data/
+noLLMscraper/anime_data/
+noLLMscraper/video_data/
+noLLMscraper/website_data/
+
+# Scraped data - keep current, ignore old backup
+scraped_data/old/
+
+# Old scraped files
+zoroto_complete.json
+*.ndjson
+
+# Temporary files
+*.tmp
+*.bak
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Test data
+test_*/
+test_fast/
+test_list/
+test_unified/
+test_llm_unified/
+test_pagination/
+test_new/
+
+# Large HTML files
+*.html
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Environment variables
+.env
+.env.local
+
+# Progress files (can be regenerated)
+progress.json
+

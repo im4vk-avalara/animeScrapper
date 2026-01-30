@@ -1,0 +1,5 @@
+# Minimal dependencies for unified_scraper_fast.py
+# Used by GitHub Actions
+
+requests>=2.31.0
+beautifulsoup4>=4.12.0

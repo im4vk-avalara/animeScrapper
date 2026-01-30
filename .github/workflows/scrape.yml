@@ -1,0 +1,136 @@
+name: Anime Scraper
+
+on:
+  # Run on schedule (daily at 2 AM UTC)
+  schedule:
+    - cron: '0 2 * * *'
+  
+  # Run on push to main (only if scraper code changes)
+  push:
+    branches:
+      - main
+    paths:
+      - 'unified_scraper_fast.py'
+      - 'requirements-fast.txt'
+      - '.github/workflows/scrape.yml'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Scraping mode'
+        required: false
+        default: 'full'
+        type: choice
+        options:
+          - quick
+          - full
+      limit:
+        description: 'Limit number of anime (empty for all)'
+        required: false
+        default: ''
+
+# Prevent concurrent runs
+concurrency:
+  group: scraper
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180  # 3 hours max
+
+    permissions:
+      contents: write  # Needed to push changes
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for proper commits
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-fast.txt
+
+      - name: Run scraper
+        run: |
+          # Set mode and limit from inputs or defaults
+          MODE="${{ github.event.inputs.mode || 'full' }}"
+          LIMIT="${{ github.event.inputs.limit }}"
+          
+          echo "Running scraper with mode=$MODE, limit=$LIMIT"
+          
+          # Build command
+          CMD="python unified_scraper_fast.py --mode $MODE"
+          if [ -n "$LIMIT" ]; then
+            CMD="$CMD --limit $LIMIT"
+          fi
+          
+          # Run scraper
+          $CMD
+
+      - name: Generate timestamp
+        id: timestamp
+        run: echo "time=$(date -u +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_OUTPUT
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected"
+            git diff --staged --stat
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Get stats from scraped data
+          if [ -f "scraped_data/current/statistics.json" ]; then
+            ANIME_COUNT=$(cat scraped_data/current/statistics.json | python -c "import sys,json; print(json.load(sys.stdin).get('total_anime', 'N/A'))")
+            EPISODE_COUNT=$(cat scraped_data/current/statistics.json | python -c "import sys,json; print(json.load(sys.stdin).get('total_episodes', 'N/A'))")
+          else
+            ANIME_COUNT="N/A"
+            EPISODE_COUNT="N/A"
+          fi
+          
+          git commit -m "🔄 Update scraped data - ${{ steps.timestamp.outputs.time }}
+
+          Anime: $ANIME_COUNT
+          Episodes: $EPISODE_COUNT
+          
+          [skip ci]"
+          
+          git push
+
+      - name: Summary
+        run: |
+          echo "## Scraping Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "scraped_data/current/statistics.json" ]; then
+            echo "### Statistics" >> $GITHUB_STEP_SUMMARY
+            echo '```json' >> $GITHUB_STEP_SUMMARY
+            cat scraped_data/current/statistics.json >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Files" >> $GITHUB_STEP_SUMMARY
+          echo "- Anime files: $(ls -1 scraped_data/current/anime/*.json 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- Last updated: ${{ steps.timestamp.outputs.time }}" >> $GITHUB_STEP_SUMMARY

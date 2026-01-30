@@ -1,0 +1,127 @@
+{
+  "total_anime": 20,
+  "total_episodes": 301,
+  "total_video_sources": 301,
+  "anime_list": [
+    {
+      "title": "100 Meters (2025)",
+      "url": "https://zoroto.com.in/anime/100-meters-2025/",
+      "total_episodes": 1,
+      "available_episodes": 1
+    },
+    {
+      "title": "3-nen Z-gumi Ginpachi-sensei (2025)",
+      "url": "https://zoroto.com.in/anime/3-nen-z-gumi-ginpachi-sensei-2025/",
+      "total_episodes": 12,
+      "available_episodes": 12
+    },
+    {
+      "title": "A Bouquet for an Ugly Girl",
+      "url": "https://zoroto.com.in/anime/a-bouquet-for-an-ugly-girl/",
+      "total_episodes": 13,
+      "available_episodes": 13
+    },
+    {
+      "title": "A Certain Magical Index II",
+      "url": "https://zoroto.com.in/anime/a-certain-magical-index-ii/",
+      "total_episodes": 24,
+      "available_episodes": 24
+    },
+    {
+      "title": "A Certain Scientific Railgun",
+      "url": "https://zoroto.com.in/anime/a-certain-scientific-railgun/",
+      "total_episodes": 24,
+      "available_episodes": 24
+    },
+    {
+      "title": "A Couple of Cuckoos Season 2",
+      "url": "https://zoroto.com.in/anime/a-couple-of-cuckoos-season-2/",
+      "total_episodes": 12,
+      "available_episodes": 12
+    },
+    {
+      "title": "A Gatherer’s Adventure in Isekai (2025)",
+      "url": "https://zoroto.com.in/anime/a-gatherers-adventure-in-isekai-2025/",
+      "total_episodes": 11,
+      "available_episodes": 11
+    },
+    {
+      "title": "A Gentle Noble’s Vacation Recommendation (2026)",
+      "url": "https://zoroto.com.in/anime/a-gentle-nobles-vacation-recommendation-2026/",
+      "total_episodes": 4,
+      "available_episodes": 4
+    },
+    {
+      "title": "A Mangaka’s Weirdly Wonderful Workplace (2025)",
+      "url": "https://zoroto.com.in/anime/a-mangakas-weirdly-wonderful-workplace-2025/",
+      "total_episodes": 13,
+      "available_episodes": 13
+    },
+    {
+      "title": "A Misanthrope Teaches a Class for Demi-Humans (2026)",
+      "url": "https://zoroto.com.in/anime/a-misanthrope-teaches-a-class-for-demi-humans-2026/",
+      "total_episodes": 3,
+      "available_episodes": 3
+    },
+    {
+      "title": "A Record of Mortal’s Journey to Immortality Season 3",
+      "url": "https://zoroto.com.in/anime/a-record-of-mortals-journey-to-immortality-season-3/",
+      "total_episodes": 104,
+      "available_episodes": 104
+    },
+    {
+      "title": "A Star Brighter Than the Sun (2025)",
+      "url": "https://zoroto.com.in/anime/a-star-brighter-than-the-sun-2025/",
+      "total_episodes": 12,
+      "available_episodes": 12
+    },
+    {
+      "title": "A Whisker Away",
+      "url": "https://zoroto.com.in/anime/a-whisker-away/",
+      "total_episodes": 1,
+      "available_episodes": 1
+    },
+    {
+      "title": "A Wild Last Boss Appeared! (2025)",
+      "url": "https://zoroto.com.in/anime/a-wild-last-boss-appeared-2025/",
+      "total_episodes": 12,
+      "available_episodes": 12
+    },
+    {
+      "title": "Actually, I am…",
+      "url": "https://zoroto.com.in/anime/actually-i-am/",
+      "total_episodes": 13,
+      "available_episodes": 13
+    },
+    {
+      "title": "After the Rain",
+      "url": "https://zoroto.com.in/anime/after-the-rain/",
+      "total_episodes": 12,
+      "available_episodes": 12
+    },
+    {
+      "title": "Aharen Is Indecipherable 2nd Season",
+      "url": "https://zoroto.com.in/anime/aharen-is-indecipherable-2nd-season/",
+      "total_episodes": 12,
+      "available_episodes": 12
+    },
+    {
+      "title": "Aishen Qiaokeli-ing…",
+      "url": "https://zoroto.com.in/anime/aishen-qiaokeli-ing/",
+      "total_episodes": 15,
+      "available_episodes": 15
+    },
+    {
+      "title": "Popular Series",
+      "url": "https://zoroto.com.in/anime/?status=&type=&sub=&order=popular",
+      "total_episodes": 0,
+      "available_episodes": 0
+    },
+    {
+      "title": "‘Tis Time for “Torture,” Princess Season 2 (2026)",
+      "url": "https://zoroto.com.in/anime/tis-time-for-torture-princess-season-2-2026/",
+      "total_episodes": 3,
+      "available_episodes": 3
+    }
+  ]
+}
