@@ -70,8 +70,9 @@ test_llm_unified/
 test_pagination/
 test_new/
 
-# Large HTML files
-*.html
+# Large HTML files from scraping (not website)
+scraped_html/
+*.scraped.html
 
 # Jupyter Notebooks
 .ipynb_checkpoints/

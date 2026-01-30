@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Stream</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">🎬 Anime Stream</a>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search anime...">
+        </div>
+        <div class="nav-stats">
+            <span id="totalAnime">0</span> Anime
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <h1>All Anime</h1>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="available">With Episodes</button>
+            </div>
+            <div id="animeGrid" class="anime-grid">
+                <!-- Anime cards will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Anime Detail Page -->
+        <div id="animePage" class="page">
+            <button class="back-btn" onclick="showHome()">← Back to List</button>
+            <div id="animeDetail">
+                <!-- Anime details will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Episode Player Page -->
+        <div id="playerPage" class="page">
+            <button class="back-btn" onclick="showAnime(currentAnime)">← Back to Episodes</button>
+            <div id="playerContainer">
+                <!-- Video player will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Data updated: <span id="lastUpdated">-</span></p>
+    </footer>
+
+    <script src="./app.js"></script>
+</body>
+</html>
