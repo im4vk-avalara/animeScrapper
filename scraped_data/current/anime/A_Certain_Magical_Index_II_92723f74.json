@@ -1,9 +1,14 @@
 {
   "title": "A Certain Magical Index II",
   "url": "https://zoroto.com.in/anime/a-certain-magical-index-ii/",
-  "description": "As tensions between the world of magic and Academy City continues to rise, Touma Kamijou and his hand of negation must face off against both esper and magician in order to protect the lives of those around him. Of course, he is not alone in his fight; whether by his side or out of sight, allies and enemies both old and new will enter the fray to help him.Toaru Majutsu no Index II continues the story of action and comedy, as the scale of Touma and his allies’ battle grows ever larger. A conflict ",
-  "genres": [],
-  "status": null,
+  "description": null,
+  "genres": [
+    "Action",
+    "Magic",
+    "Sci-Fi",
+    "Super Power"
+  ],
+  "status": "Completed",
   "rating": null,
   "total_episodes": 24,
   "available_episodes": 24,
@@ -225,5 +230,5 @@
       "has_videos": true
     }
   ],
-  "scraped_at": "2026-01-30 07:10:36"
+  "scraped_at": "2026-01-30 07:24:22"
 }

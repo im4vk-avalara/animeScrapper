@@ -1,9 +1,13 @@
 {
   "title": "A Certain Scientific Railgun",
   "url": "https://zoroto.com.in/anime/a-certain-scientific-railgun/",
-  "description": "The student-filled Academy City is at the forefront of scientific advancement and home to the esper development program. The seven “Level 5” espers are the most powerful in Academy City, and ranked third among them is middle schooler Mikoto Misaka, an electricity manipulator known as “The Railgun.”When strange incidents begin occurring throughout the city, she finds each crime to be connected to the elusive “Level Upper,” a legendary device that allegedly increases the esper level of its user. A",
-  "genres": [],
-  "status": null,
+  "description": null,
+  "genres": [
+    "Action",
+    "Sci-Fi",
+    "Super Power"
+  ],
+  "status": "Completed",
   "rating": null,
   "total_episodes": 24,
   "available_episodes": 24,
@@ -225,5 +229,5 @@
       "has_videos": true
     }
   ],
-  "scraped_at": "2026-01-30 07:10:36"
+  "scraped_at": "2026-01-30 07:24:22"
 }

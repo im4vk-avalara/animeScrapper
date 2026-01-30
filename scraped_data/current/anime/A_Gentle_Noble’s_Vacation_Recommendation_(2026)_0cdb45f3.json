@@ -1,9 +1,13 @@
 {
   "title": "A Gentle Noble’s Vacation Recommendation (2026)",
   "url": "https://zoroto.com.in/anime/a-gentle-nobles-vacation-recommendation-2026/",
-  "description": "When Lizel mysteriously finds himself in a city that bears odd similarities to his own but clearly isn’t, he quickly comes to terms with the unlikely truth: this is an entirely different world. Even so, laid-back Lizel isn’t the type to panic. He immediately sets out to learn more about this strange place, and to help him do so, hires a seasoned adventurer named Gil as his tour guide and protector.Until he’s able to find a way home, Lizel figures this is a perfect opportunity to explore a new wa",
-  "genres": [],
-  "status": null,
+  "description": null,
+  "genres": [
+    "Adventure",
+    "Fantasy",
+    "Slice of Life"
+  ],
+  "status": "Upcoming",
   "rating": null,
   "total_episodes": 4,
   "available_episodes": 4,
@@ -45,5 +49,5 @@
       "has_videos": true
     }
   ],
-  "scraped_at": "2026-01-30 07:10:32"
+  "scraped_at": "2026-01-30 07:24:21"
 }

@@ -6,60 +6,134 @@
     {
       "title": "100 Meters (2025)",
       "url": "https://zoroto.com.in/anime/100-meters-2025/",
+      "cover_image": null,
+      "status": "Completed",
+      "type": null,
+      "genres": [
+        "Drama",
+        "Sports"
+      ],
       "total_episodes": 1,
       "available_episodes": 1
     },
     {
       "title": "3-nen Z-gumi Ginpachi-sensei (2025)",
       "url": "https://zoroto.com.in/anime/3-nen-z-gumi-ginpachi-sensei-2025/",
+      "cover_image": null,
+      "status": "Completed",
+      "type": null,
+      "genres": [
+        "Comedy"
+      ],
       "total_episodes": 12,
       "available_episodes": 12
     },
     {
       "title": "A Bouquet for an Ugly Girl",
       "url": "https://zoroto.com.in/anime/a-bouquet-for-an-ugly-girl/",
+      "cover_image": null,
+      "status": "Ongoing",
+      "type": null,
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Seinen"
+      ],
       "total_episodes": 13,
       "available_episodes": 13
     },
     {
       "title": "A Certain Magical Index II",
       "url": "https://zoroto.com.in/anime/a-certain-magical-index-ii/",
+      "cover_image": null,
+      "status": "Completed",
+      "type": null,
+      "genres": [
+        "Action",
+        "Magic",
+        "Sci-Fi",
+        "Super Power"
+      ],
       "total_episodes": 24,
       "available_episodes": 24
     },
     {
       "title": "A Certain Scientific Railgun",
       "url": "https://zoroto.com.in/anime/a-certain-scientific-railgun/",
+      "cover_image": null,
+      "status": "Completed",
+      "type": null,
+      "genres": [
+        "Action",
+        "Sci-Fi",
+        "Super Power"
+      ],
       "total_episodes": 24,
       "available_episodes": 24
     },
     {
       "title": "A Couple of Cuckoos Season 2",
       "url": "https://zoroto.com.in/anime/a-couple-of-cuckoos-season-2/",
+      "cover_image": null,
+      "status": "Ongoing",
+      "type": null,
+      "genres": [
+        "Comedy",
+        "Harem",
+        "Romance",
+        "Shounen"
+      ],
       "total_episodes": 12,
       "available_episodes": 12
     },
     {
       "title": "A Gatherer’s Adventure in Isekai (2025)",
       "url": "https://zoroto.com.in/anime/a-gatherers-adventure-in-isekai-2025/",
+      "cover_image": null,
+      "status": "Ongoing",
+      "type": null,
+      "genres": [
+        "Adventure",
+        "Fantasy"
+      ],
       "total_episodes": 11,
       "available_episodes": 11
     },
     {
       "title": "A Gentle Noble’s Vacation Recommendation (2026)",
       "url": "https://zoroto.com.in/anime/a-gentle-nobles-vacation-recommendation-2026/",
+      "cover_image": null,
+      "status": "Upcoming",
+      "type": null,
+      "genres": [
+        "Adventure",
+        "Fantasy",
+        "Slice of Life"
+      ],
       "total_episodes": 4,
       "available_episodes": 4
     },
     {
       "title": "Popular Series",
       "url": "https://zoroto.com.in/anime/?status=&type=&sub=&order=popular",
+      "cover_image": null,
+      "status": null,
+      "type": null,
+      "genres": [],
       "total_episodes": 0,
       "available_episodes": 0
     },
     {
       "title": "‘Tis Time for “Torture,” Princess Season 2 (2026)",
       "url": "https://zoroto.com.in/anime/tis-time-for-torture-princess-season-2-2026/",
+      "cover_image": null,
+      "status": "Ongoing",
+      "type": null,
+      "genres": [
+        "Comedy",
+        "Fantasy",
+        "Gourmet"
+      ],
       "total_episodes": 3,
       "available_episodes": 3
     }

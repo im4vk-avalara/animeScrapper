@@ -1,9 +1,11 @@
 {
   "title": "3-nen Z-gumi Ginpachi-sensei (2025)",
   "url": "https://zoroto.com.in/anime/3-nen-z-gumi-ginpachi-sensei-2025/",
-  "description": "The spin-off anime to Gintama follows Ginpachi Sakata as a teacher in Gintama High School.",
-  "genres": [],
-  "status": null,
+  "description": null,
+  "genres": [
+    "Comedy"
+  ],
+  "status": "Completed",
   "rating": null,
   "total_episodes": 12,
   "available_episodes": 12,
@@ -117,5 +119,5 @@
       "has_videos": true
     }
   ],
-  "scraped_at": "2026-01-30 07:10:33"
+  "scraped_at": "2026-01-30 07:24:19"
 }
