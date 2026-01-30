@@ -55,7 +55,7 @@ function setupBrowserNavigation() {
 // Load anime index
 async function loadAnimeIndex() {
     try {
-        animeGrid.innerHTML = '<div class="loading">Loading anime...</div>';
+        animeGrid.innerHTML = '<div class="loading" data-text="Loading anime..."></div>';
         
         console.log('Fetching from:', `${DATA_PATH}/anime_index.json`);
         const response = await fetch(`${DATA_PATH}/anime_index.json`);
@@ -220,7 +220,7 @@ async function showAnime(encodedTitle, pushHistory = true) {
     }
     
     const animeDetail = document.getElementById('animeDetail');
-    animeDetail.innerHTML = '<div class="loading">Loading anime details...</div>';
+    animeDetail.innerHTML = '<div class="loading" data-text="Loading details..."></div>';
     
     // Load full anime data
     try {
