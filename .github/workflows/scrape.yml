@@ -2,8 +2,8 @@ name: Anime Scraper
 
 on:
   # Run on schedule (daily at 2 AM UTC)
-  schedule:
-    - cron: '0 2 * * *'
+  # schedule:
+  #   - cron: '0 2 * * *'
   
   # Run on push to main (only if scraper code/config changes)
   push:
